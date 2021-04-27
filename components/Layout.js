@@ -6,7 +6,7 @@ export default function Layout({ children, title = 'Übungskatalog' }) {
   return (
     <>
       <Head>
-        <title>{`${title} - RobZio`}</title>
+        <title>{`${title} - Übungskatalog`}</title>
         <meta
           name="viewport"
           content="width=device-width, 
@@ -16,11 +16,11 @@ export default function Layout({ children, title = 'Übungskatalog' }) {
         <meta name="description" content="Übungskatalog des Unifit" />
       </Head>
       <div
-        className="overflow-y-auto antialiased bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-white 
-      text-sm sm:text-base lg:text-lg flex flex-col h-screen hero_tic"
+        className="overflow-y-auto antialiased bg-gray-50 text-gray-700  
+      text-sm sm:text-base lg:text-lg flex flex-col h-screen"
       >
         <Header />
-        <div className="flex-1 lg:w-10/12 2xl:w-7/12 py-8 px-5 sm:py-12 flex flex-col justify-center self-center">
+        <div className="flex-1 mx-5 lg:w-10/12 2xl:w-7/12 py-5 flex flex-col justify-center self-center">
           {children}
         </div>
         <Footer />
