@@ -1,6 +1,7 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS } from '@contentful/rich-text-types';
 import Image from 'next/image';
+import ReactPlayer from 'react-player';
 import Layout from '../../components/Layout';
 
 const client = require('contentful').createClient({
@@ -34,9 +35,16 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Post({ uebung }) {
+  console.log(uebung);
   if (!uebung) return <div>404</div>;
   return (
     <Layout title={uebung.fields.uebungsname}>
+      <div>
+        <ReactPlayer
+          controls
+          url="//videos.ctfassets.net/if39ybjh7hnz/6NhMNGM8oaoaqRp32hPL5f/ef5530b668dfa9234a4268363a611b87/Definierte_Arme_Uebung_1_Bicepscurlsgegenwand-SMALL.m4v"
+        />
+      </div>
       <div>
         <h1>{uebung.fields.uebungsname}</h1>
         <div>

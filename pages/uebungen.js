@@ -20,19 +20,12 @@ export async function getStaticProps() {
 }
 
 export default function Uebungen({ uebungen }) {
-  function createExcerpt(text) {
-    let excerpt = text;
-    if (text.length > 100) {
-      excerpt = `${text.substring(0, 100)}...`;
-    }
-    return excerpt;
-  }
   const noEntries = (
     <div
       className="text-center w-full p-5 rounded-2xl bg-gray-200
     dark:bg-gray-800 shadow-lg"
     >
-      Currently no blog entries ...
+      Keine Eintragungen im Übungskatalog ...
     </div>
   );
   return (
@@ -45,21 +38,12 @@ export default function Uebungen({ uebungen }) {
           dark:bg-gray-800 shadow-lg"
                 key={uebung.sys.id}
               >
-                <Link href={`/blog/${uebung.fields.slug}`}>
+                <Link href={`/uebungen/${uebung.fields.slug}`}>
                   <a>
                     <div className="m-1 flex flex-row justify-between">
                       <div className="underline font-bold">
                         {uebung.fields.uebungsname}
                       </div>
-                      <div className="ml-5 text-xs mm:text-sm">
-                        {uebung.fields.hinzugefgtAm}
-                      </div>
-                    </div>
-                    <div className="m-1">
-                      {createExcerpt(
-                        uebung.fields.uebungsbeschreibung.content[0].content[0]
-                          .value
-                      )}
                     </div>
                   </a>
                 </Link>
