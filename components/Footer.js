@@ -8,38 +8,24 @@ export default function Footer() {
     shadow-2xl mb-3 mx-5 rounded-2xl"
     >
       <div className="mb-2 text-center">
-        Made with{' '}
+        Übungskatalog des{' '}
         <a
           className="font-bold no-underline hover:underline focus:underline"
-          href="https://nextjs.org/"
+          href="https://www.unifit.uni-kl.de/"
         >
-          Next.js
-        </a>
-        ,{' '}
-        <a
-          className="font-semibold no-underline hover:underline focus:underline"
-          href="https://tailwindcss.com/"
-        >
-          Tailwindcss
-        </a>{' '}
-        and{' '}
-        <a
-          className="font-semibold no-underline hover:underline focus:underline"
-          href="https://www.contentful.com/"
-        >
-          Contentful
+          Unifit
         </a>
       </div>
       <div className="mx-2 flex font-semibold">
-        <Link href="/impressum">
+        <Link href="https://www.uni-kl.de/impressum/">
           <a className="mr-2 text-center no-underline hover:underline focus:underline">
-            Legal Notice - Impressum
+            Impressum
           </a>
         </Link>
         <div>|</div>
-        <Link href="/privacy">
+        <Link href="https://www.uni-kl.de/datenschutzerklaerung/">
           <a className="ml-2 text-center no-underline hover:underline focus:underline">
-            Privacy - Datenschutz
+            Datenschutz
           </a>
         </Link>
       </div>
