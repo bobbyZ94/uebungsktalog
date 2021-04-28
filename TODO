@@ -1,5 +1,6 @@
-new favicon
-search function
-pagination
-blueprint page for exercises
-back button
+- Login Page with only PW
+- New favicon
+- Search Function by Name
+- Implement Unifit Logo Heartbeat
+- Seperate Lists by Muscle Grp and by Excercise Type
+  - Background Pic of Muscle Grp
