@@ -69,10 +69,87 @@ export default function Muskelgruppen({ uebungen }) {
             ))}
       </ul>
       <div onClick={() => setBauch(!bauch)}>Bauch</div>
+      <ul>
+        {console.log(uebungen)}
+        {bauch &&
+          uebungen
+            .filter((uebung) => uebung.fields.muskelgruppe.includes('Bauch'))
+            .map((uebungInGruppe) => (
+              <li>
+                <Link href={`/uebungen/${uebungInGruppe.fields.slug}`}>
+                  <a>
+                    <div>- {uebungInGruppe.fields.uebungsname}</div>
+                  </a>
+                </Link>
+              </li>
+            ))}
+      </ul>
       <div onClick={() => setRuecken(!ruecken)}>Rücken</div>
+      <ul>
+        {console.log(uebungen)}
+        {ruecken &&
+          uebungen
+            .filter((uebung) => uebung.fields.muskelgruppe.includes('Rücken'))
+            .map((uebungInGruppe) => (
+              <li>
+                <Link href={`/uebungen/${uebungInGruppe.fields.slug}`}>
+                  <a>
+                    <div>- {uebungInGruppe.fields.uebungsname}</div>
+                  </a>
+                </Link>
+              </li>
+            ))}
+      </ul>
       <div onClick={() => setBrust(!brust)}>Brust</div>
+      <ul>
+        {console.log(uebungen)}
+        {brust &&
+          uebungen
+            .filter((uebung) => uebung.fields.muskelgruppe.includes('Brust'))
+            .map((uebungInGruppe) => (
+              <li>
+                <Link href={`/uebungen/${uebungInGruppe.fields.slug}`}>
+                  <a>
+                    <div>- {uebungInGruppe.fields.uebungsname}</div>
+                  </a>
+                </Link>
+              </li>
+            ))}
+      </ul>
       <div onClick={() => setSchultern(!schultern)}>Schultern</div>
+      <ul>
+        {console.log(uebungen)}
+        {schultern &&
+          uebungen
+            .filter((uebung) =>
+              uebung.fields.muskelgruppe.includes('Schultern')
+            )
+            .map((uebungInGruppe) => (
+              <li>
+                <Link href={`/uebungen/${uebungInGruppe.fields.slug}`}>
+                  <a>
+                    <div>- {uebungInGruppe.fields.uebungsname}</div>
+                  </a>
+                </Link>
+              </li>
+            ))}
+      </ul>
       <div onClick={() => setArme(!arme)}>Arme</div>
+      <ul>
+        {console.log(uebungen)}
+        {arme &&
+          uebungen
+            .filter((uebung) => uebung.fields.muskelgruppe.includes('Arme'))
+            .map((uebungInGruppe) => (
+              <li>
+                <Link href={`/uebungen/${uebungInGruppe.fields.slug}`}>
+                  <a>
+                    <div>- {uebungInGruppe.fields.uebungsname}</div>
+                  </a>
+                </Link>
+              </li>
+            ))}
+      </ul>
     </Layout>
   );
 }
