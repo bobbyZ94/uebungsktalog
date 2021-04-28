@@ -39,10 +39,13 @@ export async function getStaticProps({ params }) {
 export default function Post({ uebung }) {
   console.log(uebung);
   const uebungsName = uebung.fields.uebungsname;
+  const uebungsVideo =
+    uebung.fields.videos && uebung.fields.videos[0].fields.file.url;
   const isBigScreen = useMediaQuery({
     query: '(min-device-width: 640px',
   });
-  if (!uebung) return <div>404</div>;
+  if (!uebung) return <div>Diese Übung ist noch nicht eingetragen...</div>;
+
   return (
     <Layout title={uebungsName}>
       <h1 className="text-center text-3xl font-semibold mb-5">
@@ -53,12 +56,14 @@ export default function Post({ uebung }) {
           </div>
         </Link>
       </h1>
-      <div className="flex justify-center mx-5">
-        <ReactPlayer
-          controls
-          width={`${isBigScreen ? '600px' : '280px'}`}
-          url="//videos.ctfassets.net/if39ybjh7hnz/6NhMNGM8oaoaqRp32hPL5f/ef5530b668dfa9234a4268363a611b87/Definierte_Arme_Uebung_1_Bicepscurlsgegenwand-SMALL.m4v"
-        />
+      <div className="flex justify-center mx-5 mb-5">
+        {uebungsVideo && (
+          <ReactPlayer
+            controls
+            width={`${isBigScreen ? '600px' : '280px'}`}
+            url={uebungsVideo}
+          />
+        )}
       </div>
       <div>
         <div className="mx-5">
