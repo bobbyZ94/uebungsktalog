@@ -35,10 +35,15 @@ function generateListWithMatchingUebungstyp(
   uebungstypToMatch
 ) {
   return (
-    <ul>
+    <ul className="text-gray-900">
       {uebungstypState &&
         uebungenFromContentful
           .filter((uebung) => uebung.fields.uebungstyp === uebungstypToMatch)
+          .sort(function (a, b) {
+            const textA = a.fields.uebungsname.toUpperCase();
+            const textB = b.fields.uebungsname.toUpperCase();
+            return textA.localeCompare(textB);
+          })
           .map((matchedUebung) => (
             <li>
               <Link href={`/uebungen/${matchedUebung.fields.slug}`}>
@@ -59,12 +64,41 @@ export default function Uebungstypen({ uebungen }) {
 
   return (
     <Layout title="Übungstypen">
-      <div onClick={() => setFreihantel(!freihantel)}>Freihantel</div>
-      {generateListWithMatchingUebungstyp(freihantel, uebungen, 'Freihantel')}
-      <div onClick={() => setMaschine(!maschine)}>Maschine</div>
-      {generateListWithMatchingUebungstyp(maschine, uebungen, 'Maschine')}
-      <div onClick={() => setCardio(!cardio)}>Cardio</div>
-      {generateListWithMatchingUebungstyp(cardio, uebungen, 'Cardio')}
+      <div className="grid grid-cols-1 gap-5 text-center">
+        <div className="flex flex-col items-center">
+          <div
+            className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12"
+            onClick={() => setFreihantel(!freihantel)}
+          >
+            Freihantel
+          </div>
+          {generateListWithMatchingUebungstyp(
+            freihantel,
+            uebungen,
+            'Freihantel'
+          )}
+        </div>
+
+        <div className="flex flex-col items-center">
+          <div
+            className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12"
+            onClick={() => setMaschine(!maschine)}
+          >
+            Maschine
+          </div>
+          {generateListWithMatchingUebungstyp(maschine, uebungen, 'Maschine')}
+        </div>
+
+        <div className="flex flex-col items-center">
+          <div
+            className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12"
+            onClick={() => setCardio(!cardio)}
+          >
+            Cardio
+          </div>
+          {generateListWithMatchingUebungstyp(cardio, uebungen, 'Cardio')}
+        </div>
+      </div>
     </Layout>
   );
 }

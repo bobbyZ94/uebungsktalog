@@ -20,7 +20,7 @@ export default function Layout({ children, title = 'Übungskatalog' }) {
       text-sm sm:text-base lg:text-lg flex flex-col h-screen"
       >
         <Header />
-        <div className="flex-1 mx-5 lg:w-10/12 2xl:w-7/12 py-5 flex flex-col justify-center self-center">
+        <div className="text-gray-50 flex-1 mx-5 lg:w-10/12 2xl:w-7/12 py-5 flex flex-col justify-center self-center">
           {children}
         </div>
         <Footer />

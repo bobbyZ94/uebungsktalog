@@ -9,7 +9,7 @@ const client = require('contentful').createClient({
   accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
 });
 
-// runs during build time; returns props which will get passed down to blog component
+// runs during build time; returns props which will get passed down to Muskelgruppen component
 export async function getStaticProps() {
   const data = await client.getEntries({
     content_type: 'uebung',
@@ -23,7 +23,7 @@ export async function getStaticProps() {
 }
 
 /**
- *
+ * List is alphabetically sorted also
  * @param {boolean} musclegroupState
  * @param {Array} uebungenFromContentful
  * @param {String} musclegroupToMatch
@@ -35,12 +35,17 @@ function generateListWithMatchingMusclegroups(
   musclegroupToMatch
 ) {
   return (
-    <ul>
+    <ul className="text-gray-900">
       {musclegroupState &&
         uebungenFromContentful
           .filter((uebung) =>
             uebung.fields.muskelgruppe.includes(`${musclegroupToMatch}`)
           )
+          .sort(function (a, b) {
+            const textA = a.fields.uebungsname.toUpperCase();
+            const textB = b.fields.uebungsname.toUpperCase();
+            return textA.localeCompare(textB);
+          })
           .map((matchedUebung) => (
             <li>
               <Link href={`/uebungen/${matchedUebung.fields.slug}`}>
@@ -64,18 +69,71 @@ export default function Muskelgruppen({ uebungen }) {
 
   return (
     <Layout title="Muskelgruppen">
-      <div onClick={() => setBeine(!beine)}>Beine</div>
-      {generateListWithMatchingMusclegroups(beine, uebungen, 'Beine')}
-      <div onClick={() => setBauch(!bauch)}>Bauch</div>
-      {generateListWithMatchingMusclegroups(bauch, uebungen, 'Bauch')}
-      <div onClick={() => setRuecken(!ruecken)}>Rücken</div>
-      {generateListWithMatchingMusclegroups(ruecken, uebungen, 'Rücken')}
-      <div onClick={() => setBrust(!brust)}>Brust</div>
-      {generateListWithMatchingMusclegroups(brust, uebungen, 'Brust')}
-      <div onClick={() => setSchultern(!schultern)}>Schultern</div>
-      {generateListWithMatchingMusclegroups(schultern, uebungen, 'Schultern')}
-      <div onClick={() => setArme(!arme)}>Arme</div>
-      {generateListWithMatchingMusclegroups(arme, uebungen, 'Arme')}
+      <div className="grid grid-cols-1 gap-5 text-center">
+        <div className="flex flex-col items-center">
+          <div
+            className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12"
+            onClick={() => setBeine(!beine)}
+          >
+            Beine
+          </div>
+          {generateListWithMatchingMusclegroups(beine, uebungen, 'Beine')}
+        </div>
+
+        <div className="flex flex-col items-center">
+          <div
+            className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12"
+            onClick={() => setBauch(!bauch)}
+          >
+            Bauch
+          </div>
+          {generateListWithMatchingMusclegroups(bauch, uebungen, 'Bauch')}
+        </div>
+
+        <div className="flex flex-col items-center">
+          <div
+            className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12"
+            onClick={() => setRuecken(!ruecken)}
+          >
+            Rücken
+          </div>
+          {generateListWithMatchingMusclegroups(ruecken, uebungen, 'Rücken')}
+        </div>
+
+        <div className="flex flex-col items-center">
+          <div
+            className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12"
+            onClick={() => setBrust(!brust)}
+          >
+            Brust
+          </div>
+          {generateListWithMatchingMusclegroups(brust, uebungen, 'Brust')}
+        </div>
+
+        <div className="flex flex-col items-center">
+          <div
+            className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12"
+            onClick={() => setSchultern(!schultern)}
+          >
+            Schultern
+          </div>
+          {generateListWithMatchingMusclegroups(
+            schultern,
+            uebungen,
+            'Schultern'
+          )}
+        </div>
+
+        <div className="flex flex-col items-center">
+          <div
+            className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12"
+            onClick={() => setArme(!arme)}
+          >
+            Arme
+          </div>
+          {generateListWithMatchingMusclegroups(arme, uebungen, 'Arme')}
+        </div>
+      </div>
     </Layout>
   );
 }

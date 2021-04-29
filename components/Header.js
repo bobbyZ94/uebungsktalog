@@ -24,7 +24,7 @@ export default function Header() {
   const router = useRouter();
   return (
     <div
-      className="text-white font-semibold py-5 px-4 bg-red-600
+      className="text-gray-50 font-semibold py-5 px-4 bg-red-600
      shadow-lg mt-3 mx-5 rounded-2xl flex flex-row justify-between"
     >
       <Link href="/uebungen">
