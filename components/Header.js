@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const backArrow = (
   <svg
@@ -25,8 +26,16 @@ export default function Header() {
   return (
     <div
       className="text-gray-50 font-semibold py-5 px-4 bg-red-600
-     shadow-lg mt-3 mx-5 rounded-2xl flex flex-row justify-between"
+     shadow-lg mt-3 mx-5 rounded-2xl flex flex-row items-center justify-between"
     >
+      <Link href="/uebungen">
+        <a>
+          <div className="transform hover:scale-110 translate-y-1">
+            <Image src="/logo_white_new.png" width="120" height="40" />
+          </div>
+        </a>
+      </Link>
+
       <Link href="/uebungen">
         <a>
           <div className="sm:text-2xl text-xl transform hover:scale-110">
