@@ -39,6 +39,7 @@ export async function getStaticProps({ params }) {
 export default function Post({ uebung }) {
   console.log(uebung);
   const uebungsName = uebung.fields.uebungsname;
+  // TODO: Enable multiple videos
   const uebungsVideo =
     uebung.fields.videos && uebung.fields.videos[0].fields.file.url;
   const isBigScreen = useMediaQuery({

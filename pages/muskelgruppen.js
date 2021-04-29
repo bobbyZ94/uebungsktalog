@@ -24,12 +24,34 @@ export async function getStaticProps() {
 
 /**
  *
- * @param {String} muskelgruppe
- * @param {Array} uebungMuskelgruppen
- * @returns
+ * @param {boolean} musclegroupState
+ * @param {Array} uebungenFromContentful
+ * @param {String} musclegroupToMatch
+ * @returns jsx of generated matching musclegroups
  */
-function checkMuskelgruppen(muskelgruppe, uebungMuskelgruppen) {
-  return uebungMuskelgruppen.includes(muskelgruppe);
+function generateListWithMatchingMusclegroups(
+  musclegroupState,
+  uebungenFromContentful,
+  musclegroupToMatch
+) {
+  return (
+    <ul>
+      {musclegroupState &&
+        uebungenFromContentful
+          .filter((uebung) =>
+            uebung.fields.muskelgruppe.includes(`${musclegroupToMatch}`)
+          )
+          .map((matchedUebung) => (
+            <li>
+              <Link href={`/uebungen/${matchedUebung.fields.slug}`}>
+                <a>
+                  <div>- {matchedUebung.fields.uebungsname}</div>
+                </a>
+              </Link>
+            </li>
+          ))}
+    </ul>
+  );
 }
 
 export default function Muskelgruppen({ uebungen }) {
@@ -40,116 +62,20 @@ export default function Muskelgruppen({ uebungen }) {
   const [schultern, setSchultern] = useState(false);
   const [arme, setArme] = useState(false);
 
-  console.log(uebungen[0].fields.muskelgruppe.includes('Beine'));
-
-  const noEntries = (
-    <div
-      className="text-center w-full p-5 rounded-2xl bg-gray-200
-    dark:bg-gray-800 shadow-lg"
-    >
-      Keine Eintragungen im Übungskatalog ...
-    </div>
-  );
   return (
     <Layout title="Muskelgruppen">
       <div onClick={() => setBeine(!beine)}>Beine</div>
-      <ul>
-        {console.log(uebungen)}
-        {beine &&
-          uebungen
-            .filter((uebung) => uebung.fields.muskelgruppe.includes('Beine'))
-            .map((uebungInGruppe) => (
-              <li>
-                <Link href={`/uebungen/${uebungInGruppe.fields.slug}`}>
-                  <a>
-                    <div>- {uebungInGruppe.fields.uebungsname}</div>
-                  </a>
-                </Link>
-              </li>
-            ))}
-      </ul>
+      {generateListWithMatchingMusclegroups(beine, uebungen, 'Beine')}
       <div onClick={() => setBauch(!bauch)}>Bauch</div>
-      <ul>
-        {console.log(uebungen)}
-        {bauch &&
-          uebungen
-            .filter((uebung) => uebung.fields.muskelgruppe.includes('Bauch'))
-            .map((uebungInGruppe) => (
-              <li>
-                <Link href={`/uebungen/${uebungInGruppe.fields.slug}`}>
-                  <a>
-                    <div>- {uebungInGruppe.fields.uebungsname}</div>
-                  </a>
-                </Link>
-              </li>
-            ))}
-      </ul>
+      {generateListWithMatchingMusclegroups(bauch, uebungen, 'Bauch')}
       <div onClick={() => setRuecken(!ruecken)}>Rücken</div>
-      <ul>
-        {console.log(uebungen)}
-        {ruecken &&
-          uebungen
-            .filter((uebung) => uebung.fields.muskelgruppe.includes('Rücken'))
-            .map((uebungInGruppe) => (
-              <li>
-                <Link href={`/uebungen/${uebungInGruppe.fields.slug}`}>
-                  <a>
-                    <div>- {uebungInGruppe.fields.uebungsname}</div>
-                  </a>
-                </Link>
-              </li>
-            ))}
-      </ul>
+      {generateListWithMatchingMusclegroups(ruecken, uebungen, 'Rücken')}
       <div onClick={() => setBrust(!brust)}>Brust</div>
-      <ul>
-        {console.log(uebungen)}
-        {brust &&
-          uebungen
-            .filter((uebung) => uebung.fields.muskelgruppe.includes('Brust'))
-            .map((uebungInGruppe) => (
-              <li>
-                <Link href={`/uebungen/${uebungInGruppe.fields.slug}`}>
-                  <a>
-                    <div>- {uebungInGruppe.fields.uebungsname}</div>
-                  </a>
-                </Link>
-              </li>
-            ))}
-      </ul>
+      {generateListWithMatchingMusclegroups(brust, uebungen, 'Brust')}
       <div onClick={() => setSchultern(!schultern)}>Schultern</div>
-      <ul>
-        {console.log(uebungen)}
-        {schultern &&
-          uebungen
-            .filter((uebung) =>
-              uebung.fields.muskelgruppe.includes('Schultern')
-            )
-            .map((uebungInGruppe) => (
-              <li>
-                <Link href={`/uebungen/${uebungInGruppe.fields.slug}`}>
-                  <a>
-                    <div>- {uebungInGruppe.fields.uebungsname}</div>
-                  </a>
-                </Link>
-              </li>
-            ))}
-      </ul>
+      {generateListWithMatchingMusclegroups(schultern, uebungen, 'Schultern')}
       <div onClick={() => setArme(!arme)}>Arme</div>
-      <ul>
-        {console.log(uebungen)}
-        {arme &&
-          uebungen
-            .filter((uebung) => uebung.fields.muskelgruppe.includes('Arme'))
-            .map((uebungInGruppe) => (
-              <li>
-                <Link href={`/uebungen/${uebungInGruppe.fields.slug}`}>
-                  <a>
-                    <div>- {uebungInGruppe.fields.uebungsname}</div>
-                  </a>
-                </Link>
-              </li>
-            ))}
-      </ul>
+      {generateListWithMatchingMusclegroups(arme, uebungen, 'Arme')}
     </Layout>
   );
 }
