@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import { useMediaQuery } from 'react-responsive';
 
 const backArrow = (
   <svg
@@ -22,23 +23,28 @@ const backArrow = (
 );
 
 export default function Header() {
+  const isBigScreen = useMediaQuery({
+    query: '(min-device-width: 640px',
+  });
   const router = useRouter();
   return (
     <div
       className="text-gray-50 font-semibold py-5 px-4 bg-red-600
      shadow-lg mt-3 mx-5 rounded-2xl flex flex-row items-center justify-between"
     >
-      <Link href="/uebungen">
-        <a>
-          <div className="transform hover:scale-110 translate-y-1">
-            <Image src="/logo_white_new.png" width="120" height="40" />
-          </div>
-        </a>
-      </Link>
+      {isBigScreen && (
+        <Link href="/uebungen">
+          <a>
+            <div className="transform hover:scale-110 translate-y-1">
+              <Image src="/logo_white_new.png" width="120" height="40" />
+            </div>
+          </a>
+        </Link>
+      )}
 
       <Link href="/uebungen">
         <a>
-          <div className="sm:text-2xl text-xl transform hover:scale-110">
+          <div className="text-base xs:text-xl sm:mr-5 sm:text-2xl  transform hover:scale-110">
             Übungskatalog
           </div>
         </a>
@@ -50,7 +56,7 @@ export default function Header() {
             className="sm:text-xl text-base transform hover:scale-110"
           >
             <div className="inline-block align-middle mr-1">{backArrow}</div>
-            <div className="inline-block align-middle">Zurück</div>
+            <div className="hidden xs:inline-block align-middle">Zurück</div>
           </div>
         </a>
       </Link>

@@ -3,7 +3,6 @@ import { BLOCKS } from '@contentful/rich-text-types';
 import Image from 'next/image';
 import ReactPlayer from 'react-player';
 import { useMediaQuery } from 'react-responsive';
-import Link from 'next/link';
 import Layout from '../../components/Layout';
 
 const client = require('contentful').createClient({
@@ -36,8 +35,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function Post({ uebung }) {
-  console.log(uebung);
+export default function Uebung({ uebung }) {
   const uebungsName = uebung.fields.uebungsname;
   // TODO: Enable multiple videos
   const uebungsVideo =
@@ -49,13 +47,8 @@ export default function Post({ uebung }) {
 
   return (
     <Layout title={uebungsName}>
-      <h1 className="text-center text-3xl font-semibold mb-5">
-        {uebungsName} mit{' '}
-        <Link href="https://www.instagram.com/lara_frosting/?hl=de">
-          <div className="text-pink-400 transform hover:-translate-y-7">
-            📷Lara_frosting
-          </div>
-        </Link>
+      <h1 className="text-gray-900 text-center text-3xl font-semibold mb-5">
+        {uebungsName}
       </h1>
       <div className="flex justify-center mx-5 mb-5">
         {uebungsVideo && (
@@ -67,7 +60,7 @@ export default function Post({ uebung }) {
         )}
       </div>
       <div>
-        <div className="mx-5">
+        <div className="text-gray-900 mx-5">
           {documentToReactComponents(uebung.fields.uebungsbeschreibung, {
             renderNode: {
               // eslint-disable-next-line react/display-name
