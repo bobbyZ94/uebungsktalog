@@ -23,7 +23,6 @@ export async function getStaticProps({ params }) {
     content_type: 'uebung',
     'fields.uebungstyp': params.slug,
   });
-  console.log(params.slug);
   return {
     props: {
       uebungen: data,
@@ -33,9 +32,9 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function Post({ uebungen, uebungstyp }) {
-  console.log(uebungen);
+export default function Uebungen({ uebungen, uebungstyp }) {
   function generateTable(uebungen, uebungstyp) {
+    console.log(uebungen);
     return (
       <div className="flex items-center justify-center text-center">
         <table className="">
@@ -67,7 +66,7 @@ export default function Post({ uebungen, uebungstyp }) {
                       <div>{uebung.fields.uebungsname}</div>
                     </td>
                     <td className="py-1 px-2 border-gray-50 border-r-2 border-b-2">
-                      {uebung.fields.uebungstyp}
+                      {uebungstyp}
                     </td>
                     <td className="py-1 px-2 border-gray-50 border-r-2 border-b-2">
                       {uebung.fields.muskelgruppe.join(', ')}
