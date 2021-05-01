@@ -44,7 +44,7 @@ export default function Header() {
 
       <Link href="/uebungen">
         <a>
-          <div className="text-base xs:text-xl sm:mr-5 sm:text-2xl  transform hover:scale-110">
+          <div className="text-base xs:text-xl sm:mr-5 sm:text-2xl transform hover:scale-110">
             Übungskatalog
           </div>
         </a>

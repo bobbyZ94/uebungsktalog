@@ -1,46 +1,27 @@
 /* eslint-disable no-shadow */
 import Link from 'next/link';
 import { useMediaQuery } from 'react-responsive';
-import Layout from '../../components/Layout';
+import { useState, useEffect } from 'react';
+import Layout from '../components/Layout';
 
 const client = require('contentful').createClient({
   space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
   accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
 });
 
-// Fetching muskelgruppen validation types to generate slug from content model via getContentType() deosn't work dynamically. Had to hardcode, sry
-export async function getStaticPaths() {
-  const muskelgruppenPaths = [
-    'Beine',
-    'Bauch',
-    'Rücken',
-    'Brust',
-    'Schultern',
-    'Arme',
-  ];
-  return {
-    paths: muskelgruppenPaths.map((elem) => ({
-      params: { slug: elem },
-    })),
-    fallback: true,
-  };
-}
-
-export async function getStaticProps({ params }) {
+export async function getStaticProps() {
   const data = await client.getEntries({
     content_type: 'uebung',
-    'fields.muskelgruppe': params.slug,
   });
   return {
     props: {
       uebungen: data,
-      muskelgruppe: params.slug,
     },
     revalidate: 60,
   };
 }
 
-export default function Uebungen({ uebungen, muskelgruppe }) {
+export default function Suchfunktion({ uebungen }) {
   const isVerySmallScreen = useMediaQuery({
     query: '(min-device-width: 300px',
   });
@@ -50,9 +31,25 @@ export default function Uebungen({ uebungen, muskelgruppe }) {
   const isBigScreen = useMediaQuery({
     query: '(min-device-width: 500px',
   });
-  function generateTable(uebungen) {
+  const [keyword, setKeyword] = useState('');
+  console.log(keyword);
+
+  // TODO:
+  // - Inside Use Effect generate new Table based on keyword
+  // - Filter uebungen based on keyword based on uebung name and tags
+
+  function generateTable(uebungen, keyword) {
     return (
-      <div className="flex items-center justify-center text-center">
+      <div className="flex flex-col items-center justify-center text-center">
+        <div className="text-gray-900">
+          Suche nach Übungsname oder Tags:
+          <input
+            className="border-2 border-black"
+            value={keyword}
+            placeholder="Übungsname oder Tag"
+            onChange={(e) => setKeyword(e.target.value)}
+          />
+        </div>
         <table className="">
           <tbody>
             <tr className="">
@@ -60,7 +57,7 @@ export default function Uebungen({ uebungen, muskelgruppe }) {
                 colSpan="4"
                 className="border-b-2 border-gray-50 py-2 px-2 bg-red-500 font-extrabold text-base xs:text-xl sm:text-2xl"
               >
-                {muskelgruppe}
+                Suchergebnisse
               </th>
             </tr>
             <tr className="bg-red-500">
@@ -96,6 +93,11 @@ export default function Uebungen({ uebungen, muskelgruppe }) {
               )}
             </tr>
             {uebungen.items
+              .filter(
+                (uebung) =>
+                  uebung.fields.uebungsname.toLowerCase() ===
+                  keyword.toLowerCase()
+              )
               .sort(function (a, b) {
                 const textA = a.fields.uebungsname.toUpperCase();
                 const textB = b.fields.uebungsname.toUpperCase();
@@ -142,5 +144,10 @@ export default function Uebungen({ uebungen, muskelgruppe }) {
       </div>
     );
   }
-  return <Layout title={muskelgruppe}>{generateTable(uebungen)}</Layout>;
+
+  // useEffect(() => {
+  //   generateTable(uebungen, keyword);
+  // }, [keyword]);
+
+  return <Layout title="Suche">{generateTable(uebungen, keyword)}</Layout>;
 }
