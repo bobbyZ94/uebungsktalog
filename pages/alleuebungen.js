@@ -1,6 +1,7 @@
 /* eslint-disable no-shadow */
 import Link from 'next/link';
 import { useMediaQuery } from 'react-responsive';
+import { useState } from 'react';
 import Layout from '../components/Layout';
 
 const client = require('contentful').createClient({
@@ -20,7 +21,10 @@ export async function getStaticProps() {
   };
 }
 
+// IDEE: Filter two times (for tags and for name) and intersect array/delete duplicates and then create table!
 export default function Uebungen({ uebungen }) {
+  console.log(uebungen);
+  const [keyword, setKeyword] = useState('');
   const isVerySmallScreen = useMediaQuery({
     query: '(min-device-width: 300px',
   });
@@ -33,6 +37,15 @@ export default function Uebungen({ uebungen }) {
   function generateTable(uebungen) {
     return (
       <div className="flex flex-col items-center justify-center text-center">
+        <div className="text-gray-900">
+          Suche nach Übungsname oder Tags:
+          <input
+            className="border-2 border-black"
+            value={keyword}
+            placeholder="Übungsname oder Tag"
+            onChange={(e) => setKeyword(e.target.value)}
+          />
+        </div>
         <div>
           <table className="">
             <tbody className="">
@@ -77,6 +90,15 @@ export default function Uebungen({ uebungen }) {
                 )}
               </tr>
               {uebungen.items
+                .filter(
+                  (uebung) =>
+                    uebung.fields.uebungsname
+                      .toLowerCase()
+                      .includes(keyword.toLowerCase())
+                  // uebung.fields.tags.map((tag) =>
+                  //   tag.includes(keyword.toLowerCase())
+                  // )
+                )
                 .sort(function (a, b) {
                   const textA = a.fields.uebungsname.toUpperCase();
                   const textB = b.fields.uebungsname.toUpperCase();

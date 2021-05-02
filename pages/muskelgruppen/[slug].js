@@ -1,6 +1,7 @@
 /* eslint-disable no-shadow */
 import Link from 'next/link';
 import { useMediaQuery } from 'react-responsive';
+import { useState } from 'react';
 import Layout from '../../components/Layout';
 
 const client = require('contentful').createClient({
@@ -41,6 +42,7 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Uebungen({ uebungen, muskelgruppe }) {
+  const [keyword, setKeyword] = useState('');
   const isVerySmallScreen = useMediaQuery({
     query: '(min-device-width: 300px',
   });
@@ -52,7 +54,16 @@ export default function Uebungen({ uebungen, muskelgruppe }) {
   });
   function generateTable(uebungen) {
     return (
-      <div className="flex items-center justify-center text-center">
+      <div className="flex flex-col items-center justify-center text-center">
+        <div className="text-gray-900">
+          Suche nach Übungsname oder Tags:
+          <input
+            className="border-2 border-black"
+            value={keyword}
+            placeholder="Übungsname oder Tag"
+            onChange={(e) => setKeyword(e.target.value)}
+          />
+        </div>
         <table className="">
           <tbody>
             <tr className="">
@@ -96,6 +107,11 @@ export default function Uebungen({ uebungen, muskelgruppe }) {
               )}
             </tr>
             {uebungen.items
+              .filter((uebung) =>
+                uebung.fields.uebungsname
+                  .toLowerCase()
+                  .includes(keyword.toLowerCase())
+              )
               .sort(function (a, b) {
                 const textA = a.fields.uebungsname.toUpperCase();
                 const textB = b.fields.uebungsname.toUpperCase();

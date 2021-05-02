@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 import Link from 'next/link';
 import { useMediaQuery } from 'react-responsive';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Layout from '../components/Layout';
 
 const client = require('contentful').createClient({
@@ -93,10 +93,10 @@ export default function Suchfunktion({ uebungen }) {
               )}
             </tr>
             {uebungen.items
-              .filter(
-                (uebung) =>
-                  uebung.fields.uebungsname.toLowerCase() ===
-                  keyword.toLowerCase()
+              .filter((uebung) =>
+                uebung.fields.uebungsname
+                  .toLowerCase()
+                  .includes(keyword.toLowerCase())
               )
               .sort(function (a, b) {
                 const textA = a.fields.uebungsname.toUpperCase();

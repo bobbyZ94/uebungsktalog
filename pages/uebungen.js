@@ -27,13 +27,6 @@ export default function Uebungen() {
             </Link>
           </div>
         </div>
-        <div className="flex flex-col items-center">
-          <div className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12">
-            <Link href="/suchfunktion">
-              <div className="font-semibold cursor-pointer">Suchfunktion</div>
-            </Link>
-          </div>
-        </div>
       </div>
     </Layout>
   );
