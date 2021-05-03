@@ -9,51 +9,51 @@ export default function Muskelgruppen() {
       <div className="flex items-center justify-center">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 text-center">
           <div className="flex flex-col items-center">
-            <div className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12">
-              <Link href="/muskelgruppen/Beine">
+            <Link href="/muskelgruppen/Beine">
+              <div className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12">
                 <div className="font-semibold cursor-pointer">Beine</div>
-              </Link>
-            </div>
+              </div>
+            </Link>
           </div>
 
           <div className="flex flex-col items-center">
-            <div className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12">
-              <Link href="/muskelgruppen/Bauch">
+            <Link href="/muskelgruppen/Bauch">
+              <div className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12">
                 <div className="font-semibold cursor-pointer">Bauch</div>
-              </Link>
-            </div>
+              </div>
+            </Link>
           </div>
 
           <div className="flex flex-col items-center">
-            <div className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12">
-              <Link href="/muskelgruppen/Rücken">
+            <Link href="/muskelgruppen/Rücken">
+              <div className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12">
                 <div className="font-semibold cursor-pointer">Rücken</div>
-              </Link>
-            </div>
+              </div>
+            </Link>
           </div>
 
           <div className="flex flex-col items-center">
-            <div className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12">
-              <Link href="/muskelgruppen/Brust">
+            <Link href="/muskelgruppen/Brust">
+              <div className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12">
                 <div className="font-semibold cursor-pointer">Brust</div>
-              </Link>
-            </div>
+              </div>
+            </Link>
           </div>
 
           <div className="flex flex-col items-center">
-            <div className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12">
-              <Link href="/muskelgruppen/Schultern">
+            <Link href="/muskelgruppen/Schultern">
+              <div className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12">
                 <div className="font-semibold cursor-pointer">Schultern</div>
-              </Link>
-            </div>
+              </div>
+            </Link>
           </div>
 
           <div className="flex flex-col items-center">
-            <div className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12">
-              <Link href="/muskelgruppen/Arme">
+            <Link href="/muskelgruppen/Arme">
+              <div className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12">
                 <div className="font-semibold cursor-pointer">Arme</div>
-              </Link>
-            </div>
+              </div>
+            </Link>
           </div>
         </div>
       </div>

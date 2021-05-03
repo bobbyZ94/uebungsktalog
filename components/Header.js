@@ -33,7 +33,7 @@ export default function Header() {
      shadow-lg mt-3 mx-5 rounded-2xl flex flex-row items-center justify-between"
     >
       {isBigScreen && (
-        <Link href="/uebungen">
+        <Link href="/">
           <a>
             <div className="transform hover:scale-110 translate-y-1">
               <Image src="/logo_white_new.png" width="120" height="40" />
@@ -42,24 +42,22 @@ export default function Header() {
         </Link>
       )}
 
-      <Link href="/uebungen">
+      <Link href="/">
         <a>
           <div className="text-base xs:text-xl sm:mr-5 sm:text-2xl transform hover:scale-110">
             Übungskatalog
           </div>
         </a>
       </Link>
-      <Link href="/uebungen">
-        <a>
-          <div
-            onClick={() => router.back()}
-            className="sm:text-xl text-base transform hover:scale-110"
-          >
-            <div className="inline-block align-middle mr-1">{backArrow}</div>
-            <div className="hidden xs:inline-block align-middle">Zurück</div>
-          </div>
-        </a>
-      </Link>
+      <div className="cursor-pointer">
+        <div
+          onClick={() => router.back()}
+          className="sm:text-xl text-base transform hover:scale-110"
+        >
+          <div className="inline-block align-middle mr-1">{backArrow}</div>
+          <div className="hidden xs:inline-block align-middle">Zurück</div>
+        </div>
+      </div>
     </div>
   );
 }

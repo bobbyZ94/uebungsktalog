@@ -9,32 +9,32 @@ export default function Uebungstypen() {
       <div className="flex flex-col items-center justify-center">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-center">
           <div className="flex flex-col items-center">
-            <div className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12">
-              <Link href="/uebungstypen/Frei">
+            <Link href="/uebungstypen/Frei">
+              <div className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12">
                 <div className="font-semibold cursor-pointer">Frei</div>
-              </Link>
-            </div>
+              </div>
+            </Link>
           </div>
           <div className="flex flex-col items-center">
-            <div className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12">
-              <Link href="/uebungstypen/Freihantel">
+            <Link href="/uebungstypen/Freihantel">
+              <div className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12">
                 <div className="font-semibold ursor-pointer">Freihantel</div>
-              </Link>
-            </div>
+              </div>
+            </Link>
           </div>
           <div className="flex flex-col items-center">
-            <div className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12">
-              <Link href="/uebungstypen/Maschine">
+            <Link href="/uebungstypen/Maschine">
+              <div className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12">
                 <div className="font-semibold cursor-pointer">Maschine</div>
-              </Link>
-            </div>
+              </div>
+            </Link>
           </div>
           <div className="flex flex-col items-center">
-            <div className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12">
-              <Link href="/uebungstypen/Cardio">
+            <Link href="/uebungstypen/Cardio">
+              <div className="transform hover:scale-110 flex justify-center items-center cursor-pointer bg-red-600 rounded-2xl shadow-sm w-36 h-12">
                 <div className="font-semibold cursor-pointer">Cardio</div>
-              </Link>
-            </div>
+              </div>
+            </Link>
           </div>
         </div>
       </div>

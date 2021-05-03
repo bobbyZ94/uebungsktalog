@@ -1,27 +1,10 @@
-/* eslint-disable no-shadow */
-import Link from 'next/link';
 import { useMediaQuery } from 'react-responsive';
+import Link from 'next/link';
 import { useState } from 'react';
-import Layout from '../components/Layout';
+import filterAndUnionUebungsnameAndTags from '../functions/filterAndUnionUebungsnameAndTags';
 
-const client = require('contentful').createClient({
-  space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
-  accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
-});
-
-export async function getStaticProps() {
-  const data = await client.getEntries({
-    content_type: 'uebung',
-  });
-  return {
-    props: {
-      uebungen: data,
-    },
-    revalidate: 60,
-  };
-}
-
-export default function Suchfunktion({ uebungen }) {
+export default function TableAndSearchbox({ uebungen, tableName }) {
+  const [keyword, setKeyword] = useState('');
   const isVerySmallScreen = useMediaQuery({
     query: '(min-device-width: 300px',
   });
@@ -31,33 +14,29 @@ export default function Suchfunktion({ uebungen }) {
   const isBigScreen = useMediaQuery({
     query: '(min-device-width: 500px',
   });
-  const [keyword, setKeyword] = useState('');
-  console.log(keyword);
-
-  // TODO:
-  // - Inside Use Effect generate new Table based on keyword
-  // - Filter uebungen based on keyword based on uebung name and tags
-
-  function generateTable(uebungen, keyword) {
-    return (
-      <div className="flex flex-col items-center justify-center text-center">
-        <div className="text-gray-900">
-          Suche nach Übungsname oder Tags:
-          <input
-            className="border-2 border-black"
-            value={keyword}
-            placeholder="Übungsname oder Tag"
-            onChange={(e) => setKeyword(e.target.value)}
-          />
-        </div>
+  const isVeryBigScreen = useMediaQuery({
+    query: '(min-device-width: 600px',
+  });
+  return (
+    <div className="flex flex-col items-center justify-center text-center">
+      <div className="bg-red-500 mb-5">
+        <div className="font-semibold p-1">Suche</div>
+        <input
+          className="focus:outline-none text-gray-900 text-center p-1 border-2 border-red-500"
+          value={keyword}
+          placeholder="Übungsname/Tag"
+          onChange={(e) => setKeyword(e.target.value)}
+        />
+      </div>
+      <div>
         <table className="">
-          <tbody>
+          <tbody className="">
             <tr className="">
               <th
-                colSpan="4"
+                colSpan="5"
                 className="border-b-2 border-gray-50 py-2 px-2 bg-red-500 font-extrabold text-base xs:text-xl sm:text-2xl"
               >
-                Suchergebnisse
+                {tableName}
               </th>
             </tr>
             <tr className="bg-red-500">
@@ -87,17 +66,19 @@ export default function Suchfunktion({ uebungen }) {
                 </th>
               )}
               {isBigScreen && (
-                <th className="py-1 px-2 border-gray-50 border-b-2">
+                <th
+                  className={`py-1 px-2 border-gray-50 ${
+                    isVeryBigScreen && 'border-r-2'
+                  } border-b-2`}
+                >
                   Schwierigkeit
                 </th>
               )}
+              {isVeryBigScreen && (
+                <th className="py-1 px-2 border-gray-50 border-b-2">Tags</th>
+              )}
             </tr>
-            {uebungen.items
-              .filter((uebung) =>
-                uebung.fields.uebungsname
-                  .toLowerCase()
-                  .includes(keyword.toLowerCase())
-              )
+            {filterAndUnionUebungsnameAndTags(uebungen, keyword)
               .sort(function (a, b) {
                 const textA = a.fields.uebungsname.toUpperCase();
                 const textB = b.fields.uebungsname.toUpperCase();
@@ -105,7 +86,7 @@ export default function Suchfunktion({ uebungen }) {
               })
               .map((uebung) => (
                 <Link href={`/uebungen/${uebung.fields.slug}`}>
-                  <tr className="bg-red-200 text-gray-900 cursor-pointer">
+                  <tr className="bg-red-200 hover:bg-red-500 text-gray-900 hover:text-gray-50 cursor-pointer">
                     <td
                       className={`py-1 px-2 border-gray-50 ${
                         isVerySmallScreen && 'border-r-2'
@@ -132,8 +113,17 @@ export default function Suchfunktion({ uebungen }) {
                       </td>
                     )}
                     {isBigScreen && (
-                      <td className="py-1 px-2 border-gray-50 border-b-2">
+                      <td
+                        className={`py-1 px-2 border-gray-50 ${
+                          isVeryBigScreen && 'border-r-2'
+                        } border-b-2`}
+                      >
                         {uebung.fields.schwierigkeitsgrad}
+                      </td>
+                    )}
+                    {isVeryBigScreen && (
+                      <td className="py-1 px-2 border-gray-50 border-b-2">
+                        {uebung.fields.tags.join(', ')}
                       </td>
                     )}
                   </tr>
@@ -142,12 +132,6 @@ export default function Suchfunktion({ uebungen }) {
           </tbody>
         </table>
       </div>
-    );
-  }
-
-  // useEffect(() => {
-  //   generateTable(uebungen, keyword);
-  // }, [keyword]);
-
-  return <Layout title="Suche">{generateTable(uebungen, keyword)}</Layout>;
+    </div>
+  );
 }

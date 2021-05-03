@@ -36,15 +36,14 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Uebung({ uebung }) {
+  const isBigScreen = useMediaQuery({
+    query: '(min-device-width: 640px',
+  });
+  if (!uebung) return <div>Diese Übung ist noch nicht eingetragen ...</div>;
   const uebungsName = uebung.fields.uebungsname;
   // TODO: Enable multiple videos
   const uebungsVideo =
     uebung.fields.videos && uebung.fields.videos[0].fields.file.url;
-  const isBigScreen = useMediaQuery({
-    query: '(min-device-width: 640px',
-  });
-  if (!uebung) return <div>Diese Übung ist noch nicht eingetragen...</div>;
-
   return (
     <Layout title={uebungsName}>
       <h1 className="text-gray-900 text-center text-3xl font-semibold mb-5">
