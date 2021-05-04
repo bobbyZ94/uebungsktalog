@@ -1,9 +1,9 @@
 export default function filterAndUnionUebungsnameAndTags(uebungen, keyword) {
-  const resultUebungsname = uebungen.items.filter((uebung) =>
+  const resultUebungsname = uebungen.filter((uebung) =>
     uebung.fields.uebungsname.toLowerCase().includes(keyword.toLowerCase())
   );
   // eslint-disable-next-line array-callback-return
-  const resultTags = uebungen.items.filter((uebung) => {
+  const resultTags = uebungen.filter((uebung) => {
     for (let i = 0; i < uebung.fields.tags.length; i += 1) {
       if (uebung.fields.tags[i].toLowerCase().includes(keyword.toLowerCase())) {
         return true;
