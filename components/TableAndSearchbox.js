@@ -17,6 +17,7 @@ export default function TableAndSearchbox({ uebungen, tableName }) {
   const isVeryBigScreen = useMediaQuery({
     query: '(min-device-width: 600px',
   });
+  const star = '*';
   return (
     <div className="flex flex-col items-center justify-center text-center">
       <div className="bg-red-500 mb-5">
@@ -118,7 +119,7 @@ export default function TableAndSearchbox({ uebungen, tableName }) {
                           isVeryBigScreen && 'border-r-2'
                         } border-b-2`}
                       >
-                        {uebung.fields.schwierigkeitsgrad}
+                        {star.repeat(uebung.fields.schwierigkeitsgrad)}
                       </td>
                     )}
                     {isVeryBigScreen && (
