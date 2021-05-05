@@ -20,7 +20,7 @@ export default function Layout({ children }) {
       text-sm sm:text-base lg:text-lg flex flex-col h-screen"
       >
         <Header />
-        <div className="text-gray-50 flex-1 mx-5 py-5 flex flex-col justify-center self-center">
+        <div className="text-gray-50 flex-1 mx-5 py-5 grid grid-cols-3 items-center">
           {children}
         </div>
         <Footer />
