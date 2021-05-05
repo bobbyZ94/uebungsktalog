@@ -79,57 +79,58 @@ export default function TableAndSearchbox({ uebungen, tableName }) {
                 <th className="py-1 px-2 border-gray-50 border-b-2">Tags</th>
               )}
             </tr>
-            {filterAndUnionUebungsnameAndTags(uebungen, keyword)
-              .sort(function (a, b) {
-                const textA = a.fields.uebungsname.toUpperCase();
-                const textB = b.fields.uebungsname.toUpperCase();
-                return textA.localeCompare(textB);
-              })
-              .map((uebung) => (
-                <Link href={`/uebungen/${uebung.fields.slug}`}>
-                  <tr className="bg-red-200 hover:bg-red-500 text-gray-900 hover:text-gray-50 cursor-pointer">
-                    <td
-                      className={`py-1 px-2 border-gray-50 ${
-                        isVerySmallScreen && 'border-r-2'
-                      } border-b-2`}
-                    >
-                      <div>{uebung.fields.uebungsname}</div>
-                    </td>
-                    {isVerySmallScreen && (
+            {uebungen &&
+              filterAndUnionUebungsnameAndTags(uebungen, keyword)
+                .sort(function (a, b) {
+                  const textA = a.fields.uebungsname.toUpperCase();
+                  const textB = b.fields.uebungsname.toUpperCase();
+                  return textA.localeCompare(textB);
+                })
+                .map((uebung) => (
+                  <Link href={`/uebungen/${uebung.fields.slug}`}>
+                    <tr className="bg-red-200 hover:bg-red-500 text-gray-900 hover:text-gray-50 cursor-pointer">
                       <td
                         className={`py-1 px-2 border-gray-50 ${
-                          isSmallScreen && 'border-r-2'
+                          isVerySmallScreen && 'border-r-2'
                         } border-b-2`}
                       >
-                        {uebung.fields.uebungstyp}
+                        <div>{uebung.fields.uebungsname}</div>
                       </td>
-                    )}
-                    {isSmallScreen && (
-                      <td
-                        className={`py-1 px-2 border-gray-50 ${
-                          isBigScreen && 'border-r-2'
-                        } border-b-2`}
-                      >
-                        {uebung.fields.muskelgruppe.join(', ')}
-                      </td>
-                    )}
-                    {isBigScreen && (
-                      <td
-                        className={`py-1 px-2 border-gray-50 ${
-                          isVeryBigScreen && 'border-r-2'
-                        } border-b-2`}
-                      >
-                        {star.repeat(uebung.fields.schwierigkeitsgrad)}
-                      </td>
-                    )}
-                    {isVeryBigScreen && (
-                      <td className="py-1 px-2 border-gray-50 border-b-2">
-                        {uebung.fields.tags.join(', ')}
-                      </td>
-                    )}
-                  </tr>
-                </Link>
-              ))}
+                      {isVerySmallScreen && (
+                        <td
+                          className={`py-1 px-2 border-gray-50 ${
+                            isSmallScreen && 'border-r-2'
+                          } border-b-2`}
+                        >
+                          {uebung.fields.uebungstyp}
+                        </td>
+                      )}
+                      {isSmallScreen && (
+                        <td
+                          className={`py-1 px-2 border-gray-50 ${
+                            isBigScreen && 'border-r-2'
+                          } border-b-2`}
+                        >
+                          {uebung.fields.muskelgruppe.join(', ')}
+                        </td>
+                      )}
+                      {isBigScreen && (
+                        <td
+                          className={`py-1 px-2 border-gray-50 ${
+                            isVeryBigScreen && 'border-r-2'
+                          } border-b-2`}
+                        >
+                          {star.repeat(uebung.fields.schwierigkeitsgrad)}
+                        </td>
+                      )}
+                      {isVeryBigScreen && (
+                        <td className="py-1 px-2 border-gray-50 border-b-2">
+                          {uebung.fields.tags.join(', ')}
+                        </td>
+                      )}
+                    </tr>
+                  </Link>
+                ))}
           </tbody>
         </table>
       </div>
