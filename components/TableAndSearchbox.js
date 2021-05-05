@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import filterAndUnionUebungsnameAndTags from '../functions/filterAndUnionUebungsnameAndTags';
 
-export default function TableAndSearchbox({ uebungen, tableName }) {
+export default function TableAndSearchbox({ uebungen }) {
   const [keyword, setKeyword] = useState('');
   const isVerySmallScreen = useMediaQuery({
     query: '(min-device-width: 300px',
@@ -20,27 +20,24 @@ export default function TableAndSearchbox({ uebungen, tableName }) {
   const star = '*';
   return (
     <div className="flex flex-col items-center justify-center text-center">
-      <div className="bg-red-500 mb-5">
-        <div className="font-semibold p-1">Suche</div>
-        <input
-          className="focus:outline-none text-gray-900 text-center p-1 border-2 border-red-500"
-          value={keyword}
-          placeholder="Übungsname/Tag"
-          onChange={(e) => setKeyword(e.target.value)}
-        />
-      </div>
       <div>
         <table className="">
           <tbody className="">
             <tr className="">
               <th
                 colSpan="5"
-                className="border-b-2 border-gray-50 py-2 px-2 bg-red-500 font-extrabold text-base xs:text-xl sm:text-2xl"
+                className="border-b-2 border-gray-50 py-2 px-2 bg-red-600 font-extrabold text-base ss:text-xl"
               >
-                {tableName}
+                Suche:{' '}
+                <input
+                  className="w-40 ss:w-52 focus:outline-none text-gray-900 text-center p-1 border-2 border-red-600"
+                  value={keyword}
+                  placeholder="Übungsname/Tag"
+                  onChange={(e) => setKeyword(e.target.value)}
+                />
               </th>
             </tr>
-            <tr className="bg-red-500">
+            <tr className="bg-red-600">
               <th
                 className={`py-1 px-2 border-gray-50 ${
                   isVerySmallScreen && 'border-r-2'
@@ -88,7 +85,7 @@ export default function TableAndSearchbox({ uebungen, tableName }) {
                 })
                 .map((uebung) => (
                   <Link href={`/uebungen/${uebung.fields.slug}`}>
-                    <tr className="bg-red-200 hover:bg-red-500 text-gray-900 hover:text-gray-50 cursor-pointer">
+                    <tr className="bg-red-200 hover:bg-red-600 text-gray-900 hover:text-gray-50 cursor-pointer">
                       <td
                         className={`py-1 px-2 border-gray-50 ${
                           isVerySmallScreen && 'border-r-2'
