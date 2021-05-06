@@ -16,13 +16,11 @@ export default function Layout({ children }) {
         <meta name="description" content="Übungskatalog des Unifit" />
       </Head>
       <div
-        className="overflow-y-auto antialiased bg-gray-50 text-gray-700  
+        className="overflow-y-auto antialiased bg-gray-50
       text-sm sm:text-base lg:text-lg flex flex-col h-screen"
       >
         <Header />
-        <div className="text-gray-50 flex-1 mx-5 py-5 grid grid-cols-3 items-center">
-          {children}
-        </div>
+        <div className="mx-5 py-5 flex-1">{children}</div>
         <Footer />
       </div>
     </>

@@ -46,34 +46,36 @@ export default function Uebung({ uebung }) {
     uebung.fields.videos && uebung.fields.videos[0].fields.file.url;
   return (
     <Layout title={uebungsName}>
-      <h1 className="text-gray-900 text-center text-3xl font-semibold mb-5">
-        {uebungsName}
-      </h1>
-      <div className="flex justify-center mx-5 mb-5">
-        {uebungsVideo && (
-          <ReactPlayer
-            controls
-            width={`${isBigScreen ? '600px' : '280px'}`}
-            url={uebungsVideo}
-          />
-        )}
-      </div>
       <div>
-        <div className="text-gray-900 mx-5">
-          {documentToReactComponents(uebung.fields.uebungsbeschreibung, {
-            renderNode: {
-              // eslint-disable-next-line react/display-name
-              [BLOCKS.EMBEDDED_ASSET]: (node) => (
-                <div className="flex justify-center my-5">
-                  <Image
-                    src={`https:${node.data.target.fields.file.url}`}
-                    width={node.data.target.fields.file.details.image.width}
-                    height={node.data.target.fields.file.details.image.height}
-                  />
-                </div>
-              ),
-            },
-          })}
+        <h1 className="text-gray-900 text-center text-3xl font-semibold mb-5">
+          {uebungsName}
+        </h1>
+        <div className="flex justify-center mx-5 mb-5">
+          {uebungsVideo && (
+            <ReactPlayer
+              controls
+              width={`${isBigScreen ? '600px' : '280px'}`}
+              url={uebungsVideo}
+            />
+          )}
+        </div>
+        <div>
+          <div className="text-gray-900 mx-5">
+            {documentToReactComponents(uebung.fields.uebungsbeschreibung, {
+              renderNode: {
+                // eslint-disable-next-line react/display-name
+                [BLOCKS.EMBEDDED_ASSET]: (node) => (
+                  <div className="flex justify-center my-5">
+                    <Image
+                      src={`https:${node.data.target.fields.file.url}`}
+                      width={node.data.target.fields.file.details.image.width}
+                      height={node.data.target.fields.file.details.image.height}
+                    />
+                  </div>
+                ),
+              },
+            })}
+          </div>
         </div>
       </div>
     </Layout>
