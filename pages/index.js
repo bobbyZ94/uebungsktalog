@@ -123,9 +123,9 @@ export default function Index({ uebungen }) {
 
   return (
     <Layout>
-      <div className="grid grid-cols-4 w-full h-full">
-        <div className="w-full place-self-center">
-          <div className="lg:mr-5 mr-0 text-gray-50 bg-red-600 flex flex-col items-center justify-center gap-5 p-4">
+      <div className="grid xl:grid-cols-4 w-full h-full">
+        <div className="justify-self-middle place-self-center mb-5 xl:mb-0">
+          <div className="xl:mr-5 text-gray-50 bg-red-600 flex flex-col items-center justify-center gap-5 p-4">
             <div>
               <span className="font-semibold mr-2">Übungstyp:</span>
               <select
@@ -143,87 +143,91 @@ export default function Index({ uebungen }) {
 
             <div>
               <span className="font-semibold mr-2">Muskelgruppe:</span>
-              <div>
-                <input
-                  className="form-checkbox text-gray-50 h-4 w-4 align-middle"
-                  name="Beine"
-                  type="checkbox"
-                  checked={checked.Beine}
-                  onChange={() => toggleCheck('Beine')}
-                />
-                <lable className="ml-1 align-middle">Beine</lable>
-              </div>
+              <div className="grid grid-cols-2 ss:grid-cols-3 xl:grid-cols-1 gap-x-2">
+                <div>
+                  <input
+                    className="form-checkbox text-gray-50 h-4 w-4 align-middle"
+                    name="Beine"
+                    type="checkbox"
+                    checked={checked.Beine}
+                    onChange={() => toggleCheck('Beine')}
+                  />
+                  <lable className="ml-1 align-middle">Beine</lable>
+                </div>
 
-              <div>
-                <input
-                  className="form-checkbox text-gray-50 h-4 w-4 align-middle"
-                  name="Bauch"
-                  type="checkbox"
-                  checked={checked.Bauch}
-                  onChange={() => toggleCheck('Bauch')}
-                />
-                <lable className="ml-1 align-middle">Bauch</lable>
-              </div>
+                <div>
+                  <input
+                    className="form-checkbox text-gray-50 h-4 w-4 align-middle"
+                    name="Bauch"
+                    type="checkbox"
+                    checked={checked.Bauch}
+                    onChange={() => toggleCheck('Bauch')}
+                  />
+                  <lable className="ml-1 align-middle">Bauch</lable>
+                </div>
 
-              <div>
-                <input
-                  className="form-checkbox text-gray-50 h-4 w-4 align-middle"
-                  name="Rücken"
-                  type="checkbox"
-                  checked={checked.Ruecken}
-                  onChange={() => toggleCheck('Ruecken')}
-                />
-                <lable className="ml-1 align-middle">Rücken</lable>
-              </div>
+                <div>
+                  <input
+                    className="form-checkbox text-gray-50 h-4 w-4 align-middle"
+                    name="Rücken"
+                    type="checkbox"
+                    checked={checked.Ruecken}
+                    onChange={() => toggleCheck('Ruecken')}
+                  />
+                  <lable className="ml-1 align-middle">Rücken</lable>
+                </div>
 
-              <div>
-                <input
-                  className="form-checkbox text-gray-50 h-4 w-4 align-middle"
-                  name="Brust"
-                  type="checkbox"
-                  checked={checked.Brust}
-                  onChange={() => toggleCheck('Brust')}
-                />
-                <lable className="ml-1 align-middle">Brust</lable>
-              </div>
+                <div>
+                  <input
+                    className="form-checkbox text-gray-50 h-4 w-4 align-middle"
+                    name="Brust"
+                    type="checkbox"
+                    checked={checked.Brust}
+                    onChange={() => toggleCheck('Brust')}
+                  />
+                  <lable className="ml-1 align-middle">Brust</lable>
+                </div>
 
-              <div>
-                <input
-                  className="form-checkbox text-gray-50 h-4 w-4 align-middle"
-                  name="Schultern"
-                  type="checkbox"
-                  checked={checked.Schultern}
-                  onChange={() => toggleCheck('Schultern')}
-                />
-                <lable className="ml-1 align-middle">Schultern</lable>
-              </div>
+                <div>
+                  <input
+                    className="form-checkbox text-gray-50 h-4 w-4 align-middle"
+                    name="Schultern"
+                    type="checkbox"
+                    checked={checked.Schultern}
+                    onChange={() => toggleCheck('Schultern')}
+                  />
+                  <lable className="ml-1 align-middle">Schultern</lable>
+                </div>
 
-              <div>
-                <input
-                  className="form-checkbox text-gray-50 h-4 w-4 align-middle"
-                  name="Arme"
-                  type="checkbox"
-                  checked={checked.Arme}
-                  onChange={() => toggleCheck('Arme')}
-                />
-                <lable className="ml-1 align-middle">Arme</lable>
-              </div>
+                <div>
+                  <input
+                    className="form-checkbox text-gray-50 h-4 w-4 align-middle"
+                    name="Arme"
+                    type="checkbox"
+                    checked={checked.Arme}
+                    onChange={() => toggleCheck('Arme')}
+                  />
+                  <lable className="ml-1 align-middle">Arme</lable>
+                </div>
 
-              <div>
-                <input
-                  className="form-checkbox text-gray-50 h-4 w-4 align-middle"
-                  name="alle"
-                  type="checkbox"
-                  checked={checkedAll}
-                  onChange={(e) => selectAll(e.target.checked)}
-                />
-                <lable className="ml-1 align-middle">Alle Muskelgruppen</lable>
+                <div className="col-span-2 ss:col-span-3 xl:col-span-1 place-self-start ss:place-self-center text-center">
+                  <input
+                    className="form-checkbox text-gray-50 h-4 w-4 align-middle"
+                    name="alle"
+                    type="checkbox"
+                    checked={checkedAll}
+                    onChange={(e) => selectAll(e.target.checked)}
+                  />
+                  <lable className="ml-1 align-middle">
+                    Alle Muskelgruppen
+                  </lable>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="w-full place-self-center col-span-3">
+        <div className="w-full place-self-center xl:col-span-3">
           <TabelAndSearchbox uebungen={filterUebungen(uebungen)} />
         </div>
       </div>

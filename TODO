@@ -1,13 +1,5 @@
-1.) Searchbox on every tablesite
-  - make search work with tags also
+- swap useResponsive with tailwind responsive and "hidden" in Table
+- Login Page with only PW
+- Background Pic of Muscle Grp
 
-2.) Layout for Uebungspages
-
-
-3.) Login Page with only PW
-4.) New favicon
-
-5.) Background Pic of Muscle Grp
-6.) Schwierigkeitsgrad in Sternen darstellen oder als Text (Anfänger/Fortgeschritten/Profi) ?
-7.) Zurügg buddon
 
