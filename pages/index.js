@@ -129,7 +129,7 @@ export default function Index({ uebungen }) {
             <div>
               <span className="font-semibold mr-2">Übungstyp:</span>
               <select
-                className="text-gray-900 w-44 h-9 border-none focus:outline-none appearance-none"
+                className="text-gray-900 w-48 h-9 border-none focus:outline-none appearance-none"
                 value={uebungstyp}
                 onChange={(e) => setUebungstyp(e.target.value)}
               >

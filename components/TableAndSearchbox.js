@@ -1,22 +1,9 @@
-import { useMediaQuery } from 'react-responsive';
 import Link from 'next/link';
 import { useState } from 'react';
 import filterAndUnionUebungsnameAndTags from '../functions/filterAndUnionUebungsnameAndTags';
 
 export default function TableAndSearchbox({ uebungen }) {
   const [keyword, setKeyword] = useState('');
-  const isVerySmallScreen = useMediaQuery({
-    query: '(min-device-width: 300px',
-  });
-  const isSmallScreen = useMediaQuery({
-    query: '(min-device-width: 400px',
-  });
-  const isBigScreen = useMediaQuery({
-    query: '(min-device-width: 500px',
-  });
-  const isVeryBigScreen = useMediaQuery({
-    query: '(min-device-width: 600px',
-  });
   const star = '*';
   return (
     <table className="w-full text-center text-gray-50 ">

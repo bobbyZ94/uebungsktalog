@@ -41,7 +41,7 @@ export default function Header() {
         </div>
       )}
 
-      <div className="text-center font-semibold text-xl ss:text-2xl sm:mr-5 lg:text-3xl">
+      <div className="text-center font-semibold text-base sm:text-3xl sm:mr-5 ">
         ÜBUNGSKATALOG
       </div>
 
