@@ -36,43 +36,24 @@ export default function TableAndSearchbox({ uebungen }) {
           </th>
         </tr>
         <tr className="bg-red-600">
-          <th
-            className={`py-1 px-2 border-gray-50 ${
-              isVerySmallScreen && 'border-r-2'
-            } border-b-2`}
-          >
+          <th className="py-1 px-2 border-gray-50 xs:border-r-2 border-b-2 table-cell">
             Übung
           </th>
-          {isVerySmallScreen && (
-            <th
-              className={`py-1 px-2 border-gray-50 ${
-                isSmallScreen && 'border-r-2'
-              } border-b-2`}
-            >
-              Übungstyp
-            </th>
-          )}
-          {isSmallScreen && (
-            <th
-              className={`py-1 px-2 border-gray-50 ${
-                isBigScreen && 'border-r-2'
-              } border-b-2`}
-            >
-              Muskelgruppe
-            </th>
-          )}
-          {isBigScreen && (
-            <th
-              className={`py-1 px-2 border-gray-50 ${
-                isVeryBigScreen && 'border-r-2'
-              } border-b-2`}
-            >
-              Schwierigkeit
-            </th>
-          )}
-          {isVeryBigScreen && (
-            <th className="py-1 px-2 border-gray-50 border-b-2">Tags</th>
-          )}
+
+          <th className="py-1 px-2 border-gray-50 ss:border-r-2 hidden ss:table-cell border-b-2">
+            Übungstyp
+          </th>
+
+          <th className="py-1 px-2 border-gray-50 mm:border-r-2 hidden mm:table-cell border-b-2">
+            Muskelgruppe
+          </th>
+
+          <th className="py-1 px-2 border-gray-50 sm:border-r-2 hidden sm:table-cell border-b-2">
+            Schwierigkeit
+          </th>
+          <th className="py-1 px-2 border-gray-50 border-b-2 hidden md:table-cell">
+            Tags
+          </th>
         </tr>
         {uebungen &&
           filterAndUnionUebungsnameAndTags(uebungen, keyword)
@@ -84,45 +65,25 @@ export default function TableAndSearchbox({ uebungen }) {
             .map((uebung) => (
               <Link href={`/uebungen/${uebung.fields.slug}`}>
                 <tr className="bg-red-200 hover:bg-red-600 text-gray-900 hover:text-gray-50 cursor-pointer">
-                  <td
-                    className={`py-1 px-2 border-gray-50 ${
-                      isVerySmallScreen && 'border-r-2'
-                    } border-b-2`}
-                  >
+                  <td className="py-1 px-2 border-gray-50 xs:border-r-2 border-b-2 table-cell">
                     <div>{uebung.fields.uebungsname}</div>
                   </td>
-                  {isVerySmallScreen && (
-                    <td
-                      className={`py-1 px-2 border-gray-50 ${
-                        isSmallScreen && 'border-r-2'
-                      } border-b-2`}
-                    >
-                      {uebung.fields.uebungstyp}
-                    </td>
-                  )}
-                  {isSmallScreen && (
-                    <td
-                      className={`py-1 px-2 border-gray-50 ${
-                        isBigScreen && 'border-r-2'
-                      } border-b-2`}
-                    >
-                      {uebung.fields.muskelgruppe.join(', ')}
-                    </td>
-                  )}
-                  {isBigScreen && (
-                    <td
-                      className={`py-1 px-2 border-gray-50 ${
-                        isVeryBigScreen && 'border-r-2'
-                      } border-b-2`}
-                    >
-                      {star.repeat(uebung.fields.schwierigkeitsgrad)}
-                    </td>
-                  )}
-                  {isVeryBigScreen && (
-                    <td className="py-1 px-2 border-gray-50 border-b-2">
-                      {uebung.fields.tags.join(', ')}
-                    </td>
-                  )}
+
+                  <td className="py-1 px-2 border-gray-50 ss:border-r-2 hidden ss:table-cell border-b-2">
+                    {uebung.fields.uebungstyp}
+                  </td>
+
+                  <td className="py-1 px-2 border-gray-50 mm:border-r-2 hidden mm:table-cell border-b-2">
+                    {uebung.fields.muskelgruppe.join(', ')}
+                  </td>
+
+                  <td className="py-1 px-2 border-gray-50 sm:border-r-2 hidden sm:table-cell border-b-2">
+                    {star.repeat(uebung.fields.schwierigkeitsgrad)}
+                  </td>
+
+                  <td className="py-1 px-2 border-gray-50 border-b-2 hidden md:table-cell">
+                    {uebung.fields.tags.join(', ')}
+                  </td>
                 </tr>
               </Link>
             ))}
