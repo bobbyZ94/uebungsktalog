@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useMediaQuery } from 'react-responsive';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const backArrow = (
   <svg
@@ -40,10 +41,13 @@ export default function Header() {
           />
         </div>
       )}
-
-      <div className="text-center font-semibold text-base sm:text-3xl sm:mr-5 ">
-        ÜBUNGSKATALOG
-      </div>
+      <Link href="/">
+        <a>
+          <div className="text-center font-semibold text-base mm:text-xl md:text-2xl xl:text-3xl sm:mr-5 transform hover:scale-110">
+            ÜBUNGSKATALOG
+          </div>
+        </a>
+      </Link>
 
       <div className="cursor-pointer">
         <div

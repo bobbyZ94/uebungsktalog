@@ -39,15 +39,22 @@ export default function Uebung({ uebung }) {
   const isBigScreen = useMediaQuery({
     query: '(min-device-width: 640px',
   });
-  if (!uebung) return <div>Diese Übung ist noch nicht eingetragen ...</div>;
+  if (!uebung)
+    return (
+      <Layout>
+        <div className="w-full h-full text-xl text-center flex items-center justify-center">
+          <div>Diese Übung ist noch nicht eingetragen ... 404!</div>
+        </div>
+      </Layout>
+    );
   const uebungsName = uebung.fields.uebungsname;
   // TODO: Enable multiple videos
   const uebungsVideo =
     uebung.fields.videos && uebung.fields.videos[0].fields.file.url;
   return (
-    <Layout title={uebungsName}>
-      <div>
-        <h1 className="text-gray-900 text-center text-3xl font-semibold mb-5">
+    <Layout title={`${uebungsName} - Unfit Übungskatalog`}>
+      <div className="grid w-full h-full">
+        <h1 className="bg-red-600 rounded-2xl p-3 place-self-center text-gray-50 text-center font-semibold text-base mm:text-xl md:text-2xl xl:text-3xl mb-5">
           {uebungsName}
         </h1>
         <div className="flex justify-center mx-5 mb-5">

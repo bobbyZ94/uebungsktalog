@@ -2,11 +2,11 @@ import Head from 'next/head';
 import Footer from './Footer';
 import Header from './Header';
 
-export default function Layout({ children }) {
+export default function Layout({ children, title = 'Übungskatalog Unifit' }) {
   return (
     <>
       <Head>
-        <title>Übungskatalog Unifit</title>
+        <title>{title}</title>
         <meta
           name="viewport"
           content="width=device-width, 
