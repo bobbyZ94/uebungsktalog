@@ -28,8 +28,8 @@ export default function Header() {
   const router = useRouter();
   return (
     <div
-      className="text-gray-50 py-5 px-4 bg-red-600
-     shadow-lg mt-3 mx-5 rounded-2xl flex justify-between items-center
+      className="text-white py-5 px-4 bg-red-600
+     shadow-2xl mt-3 mx-5 rounded-2xl flex justify-between items-center
      "
     >
       {isSmallScreen && (

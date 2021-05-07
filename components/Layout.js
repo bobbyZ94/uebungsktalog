@@ -16,7 +16,7 @@ export default function Layout({ children, title = 'Übungskatalog Unifit' }) {
         <meta name="description" content="Übungskatalog des Unifit" />
       </Head>
       <div
-        className="overflow-y-auto antialiased bg-gray-50
+        className="overflow-y-auto antialiased bg-white
       text-sm sm:text-base lg:text-lg flex flex-col h-screen"
       >
         <Header />

@@ -125,7 +125,7 @@ export default function Index({ uebungen }) {
     <Layout>
       <div className="grid xl:grid-cols-4 w-full h-full">
         <div className="justify-self-middle place-self-center mb-5 xl:mb-0">
-          <div className="xl:mr-5 text-gray-50 bg-red-600 flex flex-col items-center justify-center gap-5 p-4">
+          <div className="shadow-2xl rounded-2xl xl:mr-5 text-white bg-red-600 flex flex-col items-center justify-center gap-5 p-4">
             <div>
               <span className="font-semibold mr-2">Übungstyp:</span>
               <select
@@ -146,7 +146,7 @@ export default function Index({ uebungen }) {
               <div className="grid grid-cols-2 ss:grid-cols-3 xl:grid-cols-1 gap-x-2">
                 <div>
                   <input
-                    className="form-checkbox text-gray-50 h-4 w-4 align-middle"
+                    className="form-checkbox text-white h-4 w-4 align-middle"
                     name="Beine"
                     type="checkbox"
                     checked={checked.Beine}
@@ -157,7 +157,7 @@ export default function Index({ uebungen }) {
 
                 <div>
                   <input
-                    className="form-checkbox text-gray-50 h-4 w-4 align-middle"
+                    className="form-checkbox text-white h-4 w-4 align-middle"
                     name="Bauch"
                     type="checkbox"
                     checked={checked.Bauch}
@@ -168,7 +168,7 @@ export default function Index({ uebungen }) {
 
                 <div>
                   <input
-                    className="form-checkbox text-gray-50 h-4 w-4 align-middle"
+                    className="form-checkbox text-white h-4 w-4 align-middle"
                     name="Rücken"
                     type="checkbox"
                     checked={checked.Ruecken}
@@ -179,7 +179,7 @@ export default function Index({ uebungen }) {
 
                 <div>
                   <input
-                    className="form-checkbox text-gray-50 h-4 w-4 align-middle"
+                    className="form-checkbox text-white h-4 w-4 align-middle"
                     name="Brust"
                     type="checkbox"
                     checked={checked.Brust}
@@ -190,7 +190,7 @@ export default function Index({ uebungen }) {
 
                 <div>
                   <input
-                    className="form-checkbox text-gray-50 h-4 w-4 align-middle"
+                    className="form-checkbox text-white h-4 w-4 align-middle"
                     name="Schultern"
                     type="checkbox"
                     checked={checked.Schultern}
@@ -201,7 +201,7 @@ export default function Index({ uebungen }) {
 
                 <div>
                   <input
-                    className="form-checkbox text-gray-50 h-4 w-4 align-middle"
+                    className="form-checkbox text-white h-4 w-4 align-middle"
                     name="Arme"
                     type="checkbox"
                     checked={checked.Arme}
@@ -212,7 +212,7 @@ export default function Index({ uebungen }) {
 
                 <div className="col-span-2 ss:col-span-3 xl:col-span-1 place-self-start ss:place-self-center text-center">
                   <input
-                    className="form-checkbox text-gray-50 h-4 w-4 align-middle"
+                    className="form-checkbox text-white h-4 w-4 align-middle"
                     name="alle"
                     type="checkbox"
                     checked={checkedAll}
@@ -227,7 +227,7 @@ export default function Index({ uebungen }) {
           </div>
         </div>
 
-        <div className="w-full place-self-center xl:col-span-3">
+        <div className="rounded-2xl overflow-hidden shadow-2xl w-full place-self-center xl:col-span-3 inline-block">
           <TabelAndSearchbox uebungen={filterUebungen(uebungen)} />
         </div>
       </div>
