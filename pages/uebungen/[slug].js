@@ -70,8 +70,8 @@ export default function Uebung({ uebung }) {
   return (
     <Layout title={`${uebungsName} - Unfit Übungskatalog`}>
       <div className="flex items-center justify-center">
-        <div className="md:w-8/12 text-white grid grid-cols-1 place-items-center gap-5 md:gap-10">
-          <h1 className="bg-red-600 rounded-2xl shadow-2xl p-3 text-center font-semibold text-base mm:text-xl md:text-2xl xl:text-3xl">
+        <div className="md:w-8/12 text-white grid grid-cols-1 md:grid-cols-2 place-items-center gap-5 md:gap-10">
+          <h1 className="col-span-2 bg-red-600 rounded-2xl shadow-2xl p-3 text-center font-semibold text-base mm:text-xl md:text-2xl xl:text-3xl">
             {uebungsName}
           </h1>
           <div className="overflow-hidden rounded-2xl bg-red-600">
