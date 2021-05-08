@@ -127,7 +127,7 @@ export default function Index({ uebungen }) {
         <div className="justify-self-middle place-self-center mb-5 xl:mb-0">
           <div className="shadow-2xl rounded-2xl xl:mr-5 text-white bg-red-600 flex flex-col items-center justify-center gap-5 p-4">
             <div>
-              <span className="font-semibold mr-2">Übungstyp:</span>
+              <h3 className="inline mr-2">Übungstyp:</h3>
               <select
                 className="text-gray-900 w-48 h-9 border-none focus:outline-none appearance-none"
                 value={uebungstyp}
@@ -142,7 +142,7 @@ export default function Index({ uebungen }) {
             </div>
 
             <div>
-              <span className="font-semibold mr-2">Muskelgruppe:</span>
+              <h3 className="mr-2">Muskelgruppe:</h3>
               <div className="grid grid-cols-2 ss:grid-cols-3 xl:grid-cols-1 gap-x-2">
                 <div>
                   <input

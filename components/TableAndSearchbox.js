@@ -9,11 +9,8 @@ export default function TableAndSearchbox({ uebungen }) {
     <table className="w-full text-center text-white ">
       <tbody className="">
         <tr className="">
-          <th
-            colSpan="5"
-            className="border-b-2 border-white p-3 bg-red-600 font-extrabold text-base ss:text-xl"
-          >
-            Suche:{' '}
+          <th colSpan="5" className="border-b-2 border-white p-3 bg-red-600">
+            <h2 className="inline mr-1">Suche:</h2>
             <input
               className="w-40 ss:w-52 focus:outline-none border focus:border-black text-gray-900 text-center p-1"
               value={keyword}

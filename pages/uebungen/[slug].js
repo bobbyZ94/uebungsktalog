@@ -70,30 +70,31 @@ export default function Uebung({ uebung }) {
   return (
     <Layout title={`${uebungsName} - Unfit Übungskatalog`}>
       <div className="flex items-center justify-center">
-        <div className="md:w-8/12 text-white grid grid-cols-1 md:grid-cols-2 place-items-center gap-5 md:gap-10">
-          <h1 className="col-span-2 bg-red-600 rounded-2xl shadow-2xl p-3 text-center font-semibold text-base mm:text-xl md:text-2xl xl:text-3xl">
+        <div className="place-items-center grid grid-cols-1 md:grid-cols-2 p-5 bg-red-600 rounded-2xl ss:w-10/12 mm:w-8/12 xl:w-6/12 text-white gap-5">
+          <h1 className="md:col-span-2 bg-red-600 rounded-2xl underline text-center">
             {uebungsName}
           </h1>
-          <div className="overflow-hidden rounded-2xl bg-red-600">
-            {uebungsVideo && (
-              <ReactPlayer
-                controls
-                width="100%"
-                height="100%"
-                url={uebungsVideo}
-              />
-            )}
-          </div>
 
-          <div className="rounded-2xl shadow-2xl bg-red-600 mt-4 mb:mt-0">
-            <div className="px-1">
+          <div className="grid grid-cols-1 md:col-span-2 border-2 border-white">
+            <div className="">
               <div className="flex">
-                <h1 className="rounded-2xl transform -translate-y-3 px-1 translate-x-1 text-center bg-red-600 font-semibold text-base mm:text-xl md:text-2xl xl:text-3xl">
+                <h3 className="px-1 rounded-2xl transform -translate-y-3 sm:-translate-y-4 translate-x-1 text-center bg-red-600">
                   Anleitung
-                </h1>
+                </h3>
               </div>
-
-              <div className="transform -translate-y-2 p-1">
+              <div className="max-w-md float-right p-2">
+                <div className="overflow-hidden rounded-2xl">
+                  {uebungsVideo && (
+                    <ReactPlayer
+                      controls
+                      width="100%"
+                      height="100%"
+                      url={uebungsVideo}
+                    />
+                  )}
+                </div>
+              </div>
+              <div className="px-2">
                 {documentToReactComponents(uebung.fields.uebungsbeschreibung, {
                   renderNode: {
                     // eslint-disable-next-line react/display-name
@@ -114,58 +115,69 @@ export default function Uebung({ uebung }) {
                 })}
               </div>
             </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 p-2 mt-3 place-items-center">
+              <div className="max-w-md">
+                <h3 className="font-semibold">Übungsanfang</h3>
+                <Image
+                  src={`https:${bildAnfang}`}
+                  width={bildAnfangWidth}
+                  height={bildAnfangHeight}
+                  className="rounded-2xl"
+                />
+              </div>
+              <div className="max-w-md">
+                <h3 className="font-semibold">Übungsende</h3>
+                <Image
+                  src={`https:${bildEnde}`}
+                  width={bildEndeWidth}
+                  height={bildEndeHeight}
+                  className="rounded-2xl"
+                />
+              </div>
+            </div>
           </div>
-          <div className="">
-            <Image
-              src={`https:${bildAnfang}`}
-              width={bildAnfangWidth}
-              height={bildAnfangHeight}
-              className="rounded-2xl"
-            />
-          </div>
-          <div className="">
-            <Image
-              src={`https:${bildEnde}`}
-              width={bildEndeWidth}
-              height={bildEndeHeight}
-              className="rounded-2xl"
-            />
-          </div>
-          <div className="bg-red-600 overflow-hidden rounded-2xl p-3">
+
+          <div className="md:col-span-2 bg-red-600 overflow-hidden rounded-2xl p-3">
             <table>
               <tbody>
                 <tr>
                   <td className="font-semibold border-b-2 border-r-2 border-white p-1">
                     Übungstyp
                   </td>
-                  <td className="border-b-2 border-white p-1">{uebungstyp}</td>
+                  <td className="text-center border-b-2 border-white p-1">
+                    {uebungstyp}
+                  </td>
                 </tr>
                 <tr>
                   <td className="pr-5 font-semibold border-b-2 border-r-2 border-white p-1">
                     Muskelgruppe
                   </td>
-                  <td className="border-b-2 border-white p-1">
+                  <td className="text-center border-b-2 border-white p-1">
                     {muskelgruppe.join(', ')}
                   </td>
                 </tr>
                 <tr>
-                  <td className="font-semibold border-r-2 border-white p-1">
+                  <td className="font-semibold border-b-2 border-r-2 border-white p-1">
                     Schwierigkeit
                   </td>
-                  <td className="border-white p-1">
+                  <td className="text-center border-b-2 border-white p-1">
                     {star.repeat(schwierigkeitsgrad)}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="font-semibold border-r-2 border-white p-1">
+                    Hinzugefügt
+                  </td>
+                  <td className="text-center border-white p-1">
+                    {uebungsDatum.toLocaleString('de-DE', {
+                      day: 'numeric',
+                      month: 'numeric',
+                      year: 'numeric',
+                    })}
                   </td>
                 </tr>
               </tbody>
             </table>
-            <div className="text-center mt-5">
-              Hinzugefügt am:{' '}
-              {uebungsDatum.toLocaleString('de-DE', {
-                day: 'numeric',
-                month: 'numeric',
-                year: 'numeric',
-              })}
-            </div>
           </div>
         </div>
       </div>

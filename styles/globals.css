@@ -17,6 +17,16 @@ body {
   tbody tr:last-child td{
     border-bottom: 0;
   }
+  h1 {
+    @apply font-semibold text-base mm:text-xl sm:text-2xl md:text-3xl
+  }
+  h2 {
+    @apply font-semibold text-base mm:text-lg sm:text-xl md:text-2xl
+  }
+
+  h3 {
+    @apply font-semibold text-base sm:text-lg md:text-xl
+  }
 }
 @layer components {
   [type="checkbox"]:checked {

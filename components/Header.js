@@ -36,16 +36,16 @@ export default function Header() {
         <div className="transform translate-y-1">
           <Image
             src="/logo_white_new.png"
-            width={`${isBigScreen ? '120' : '90'}`}
-            height={`${isBigScreen ? '40' : '30'}`}
+            width={`${isBigScreen ? '120' : '75'}`}
+            height={`${isBigScreen ? '40' : '25'}`}
           />
         </div>
       )}
       <Link href="/">
         <a>
-          <div className="text-center font-semibold text-base mm:text-xl md:text-2xl xl:text-3xl sm:mr-5 transform hover:scale-110">
+          <h1 className="text-center sm:mr-5 transform hover:scale-110">
             ÜBUNGSKATALOG
-          </div>
+          </h1>
         </a>
       </Link>
 
