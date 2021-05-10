@@ -135,7 +135,7 @@ export default function Uebung({ uebung }) {
               <div className="max-w-md">
                 <h3 className="font-semibold">Übungsende</h3>
                 <Image
-                  src={bildAnfang ? `https:${bildAnfang}` : '/placeholder.png'}
+                  src={bildEnde ? `https:${bildEnde}` : '/placeholder.png'}
                   width={bildEnde ? bildEndeWidth : '1600px'}
                   height={bildEnde ? bildEndeHeight : '1415px'}
                   className="rounded-2xl"
