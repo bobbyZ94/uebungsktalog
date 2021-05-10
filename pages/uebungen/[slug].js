@@ -51,15 +51,22 @@ export default function Uebung({ uebung }) {
   const uebungsVideo =
     uebung.fields.videos && uebung.fields.videos[0].fields.file.url;
 
-  const bildAnfang = uebung.fields.bildAnfang.fields.file.url;
+  const bildAnfang =
+    uebung.fields.bildAnfang && uebung.fields.bildAnfang.fields.file.url;
   const bildAnfangWidth =
+    uebung.fields.bildAnfang &&
     uebung.fields.bildAnfang.fields.file.details.image.width;
   const bildAnfangHeight =
+    uebung.fields.bildAnfang &&
     uebung.fields.bildAnfang.fields.file.details.image.height;
 
-  const bildEnde = uebung.fields.bildEnde.fields.file.url;
-  const bildEndeWidth = uebung.fields.bildEnde.fields.file.details.image.width;
+  const bildEnde =
+    uebung.fields.bildEnde && uebung.fields.bildEnde.fields.file.url;
+  const bildEndeWidth =
+    uebung.fields.bildEnde &&
+    uebung.fields.bildEnde.fields.file.details.image.width;
   const bildEndeHeight =
+    uebung.fields.bildEnde &&
     uebung.fields.bildEnde.fields.file.details.image.height;
 
   const { muskelgruppe } = uebung.fields;
@@ -119,18 +126,18 @@ export default function Uebung({ uebung }) {
               <div className="max-w-md">
                 <h3 className="font-semibold">Übungsanfang</h3>
                 <Image
-                  src={`https:${bildAnfang}`}
-                  width={bildAnfangWidth}
-                  height={bildAnfangHeight}
+                  src={bildAnfang ? `https:${bildAnfang}` : '/placeholder.png'}
+                  width={bildAnfang ? bildAnfangWidth : '1600px'}
+                  height={bildAnfang ? bildAnfangHeight : '1415px'}
                   className="rounded-2xl"
                 />
               </div>
               <div className="max-w-md">
                 <h3 className="font-semibold">Übungsende</h3>
                 <Image
-                  src={`https:${bildEnde}`}
-                  width={bildEndeWidth}
-                  height={bildEndeHeight}
+                  src={bildAnfang ? `https:${bildAnfang}` : '/placeholder.png'}
+                  width={bildEnde ? bildEndeWidth : '1600px'}
+                  height={bildEnde ? bildEndeHeight : '1415px'}
                   className="rounded-2xl"
                 />
               </div>

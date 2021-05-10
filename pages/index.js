@@ -124,7 +124,7 @@ export default function Index({ uebungen }) {
   return (
     <Layout>
       <div className="grid xl:grid-cols-4 w-full h-full">
-        <div className="justify-self-middle place-self-center mb-5 xl:mb-0">
+        <div className="place-self-center xl:place-self-start xl:justify-self-center xl:sticky xl:top-72 xl:h-screen mb-5 xl:mb-0">
           <div className="shadow-2xl rounded-2xl xl:mr-5 text-white bg-red-600 flex flex-col items-center justify-center gap-5 p-4">
             <div>
               <h3 className="inline mr-2">Übungstyp:</h3>

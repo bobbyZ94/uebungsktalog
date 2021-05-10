@@ -14,6 +14,5 @@ export default function filterAndUnionUebungsnameAndTags(uebungen, keyword) {
     }
   });
   const union = [...new Set([...resultUebungsname, ...resultTags])];
-  console.log(union);
   return union;
 }
