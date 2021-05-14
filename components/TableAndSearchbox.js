@@ -66,7 +66,7 @@ export default function TableAndSearchbox({ uebungen }) {
                   </td>
 
                   <td className="py-2 px-2 border-white border-b-2 hidden md:table-cell">
-                    {uebung.fields.tags.join(', ')}
+                    {uebung.fields.tags.slice(0, 5).join(', ')}
                   </td>
                 </tr>
               </Link>
