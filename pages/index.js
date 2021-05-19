@@ -24,7 +24,13 @@ export async function getStaticProps() {
 }
 
 export default function Index({ uebungen }) {
-  const [uebungstyp, setUebungstyp] = useState('Alle');
+  const [uebungstyp, setUebungstyp] = useState({
+    Frei: true,
+    Freihantel: true,
+    Cardio: true,
+    Maschine: true,
+  });
+
   const [checkedAll, setCheckedAll] = useState(false);
   const [checked, setChecked] = useState({
     Beine: true,
@@ -37,6 +43,14 @@ export default function Index({ uebungen }) {
 
   const toggleCheck = (inputName) => {
     setChecked((prevState) => {
+      const newState = { ...prevState };
+      newState[inputName] = !prevState[inputName];
+      return newState;
+    });
+  };
+
+  const toggleCheckUebungstyp = (inputName) => {
+    setUebungstyp((prevState) => {
       const newState = { ...prevState };
       newState[inputName] = !prevState[inputName];
       return newState;
@@ -69,17 +83,43 @@ export default function Index({ uebungen }) {
   }, [checked]);
 
   function filterUebungen(uebungen) {
-    if (checkedAll && uebungstyp === 'Alle') {
+    if (
+      checkedAll &&
+      uebungstyp.Frei &&
+      uebungstyp.Cardio &&
+      uebungstyp.Freihantel &&
+      uebungstyp.Maschine
+    ) {
       return uebungen.items;
     }
+
     let result = [];
-    if (uebungstyp === 'Alle') {
-      result = uebungen.items;
-    } else {
-      result = uebungen.items.filter(
-        (uebungen) => uebungen.fields.uebungstyp === uebungstyp
+
+    if (uebungstyp.Frei) {
+      const filter = uebungen.items.filter(
+        (uebungen) => uebungen.fields.uebungstyp === 'Frei'
       );
+      result = [...result, ...filter];
     }
+    if (uebungstyp.Freihantel) {
+      const filter = uebungen.items.filter(
+        (uebungen) => uebungen.fields.uebungstyp === 'Freihantel'
+      );
+      result = [...result, ...filter];
+    }
+    if (uebungstyp.Maschine) {
+      const filter = uebungen.items.filter(
+        (uebungen) => uebungen.fields.uebungstyp === 'Maschine'
+      );
+      result = [...result, ...filter];
+    }
+    if (uebungstyp.Cardio) {
+      const filter = uebungen.items.filter(
+        (uebungen) => uebungen.fields.uebungstyp === 'Cardio'
+      );
+      result = [...result, ...filter];
+    }
+
     let resultMuskelgruppen = [];
     if (checked.Beine) {
       const filter = result.filter((uebungen) =>
@@ -125,20 +165,51 @@ export default function Index({ uebungen }) {
     <Layout>
       <div className="grid xl:grid-cols-4 w-full h-full">
         <div className="place-self-center xl:place-self-start xl:justify-self-center xl:sticky xl:top-72 mb-5 xl:mb-0">
-          <div className="shadow-2xl rounded-2xl xl:mr-5 text-white bg-red-600 flex flex-col items-center justify-center gap-5 p-4">
+          <div className="shadow-2xl rounded-2xl xl:mr-5 text-white bg-red-600 flex flex-col gap-5 p-4">
             <div>
               <h3 className="inline mr-2">Übungstyp:</h3>
-              <select
-                className="text-gray-900 w-48 h-9 border-none focus:outline-none appearance-none"
-                value={uebungstyp}
-                onChange={(e) => setUebungstyp(e.target.value)}
-              >
-                <option value="Alle">Alle Übungstypen</option>
-                <option value="Frei">Frei</option>
-                <option value="Freihantel">Freihantel</option>
-                <option value="Maschine">Maschine</option>
-                <option value="Cardio">Cardio</option>
-              </select>
+              <div className="grid grid-cols-2 ss:grid-cols-2 xl:grid-cols-1 gap-x-2">
+                <div>
+                  <input
+                    className="form-checkbox text-white h-4 w-4 align-middle"
+                    name="Frei"
+                    type="checkbox"
+                    checked={uebungstyp.Frei}
+                    onChange={() => toggleCheckUebungstyp('Frei')}
+                  />
+                  <lable className="ml-1 align-middle">Frei</lable>
+                </div>
+                <div>
+                  <input
+                    className="form-checkbox text-white h-4 w-4 align-middle"
+                    name="Freihantel"
+                    type="checkbox"
+                    checked={uebungstyp.Freihantel}
+                    onChange={() => toggleCheckUebungstyp('Freihantel')}
+                  />
+                  <lable className="ml-1 align-middle">Freihantel</lable>
+                </div>
+                <div>
+                  <input
+                    className="form-checkbox text-white h-4 w-4 align-middle"
+                    name="Maschine"
+                    type="checkbox"
+                    checked={uebungstyp.Maschine}
+                    onChange={() => toggleCheckUebungstyp('Maschine')}
+                  />
+                  <lable className="ml-1 align-middle">Maschine</lable>
+                </div>
+                <div>
+                  <input
+                    className="form-checkbox text-white h-4 w-4 align-middle"
+                    name="Cardio"
+                    type="checkbox"
+                    checked={uebungstyp.Cardio}
+                    onChange={() => toggleCheckUebungstyp('Cardio')}
+                  />
+                  <lable className="ml-1 align-middle">Cardio</lable>
+                </div>
+              </div>
             </div>
 
             <div>
@@ -210,7 +281,7 @@ export default function Index({ uebungen }) {
                   <lable className="ml-1 align-middle">Arme</lable>
                 </div>
 
-                <div className="col-span-2 ss:col-span-3 xl:col-span-1 place-self-start ss:place-self-center text-center">
+                <div className="col-span-2 ss:col-span-3 xl:col-span-1">
                   <input
                     className="form-checkbox text-white h-4 w-4 align-middle"
                     name="alle"
