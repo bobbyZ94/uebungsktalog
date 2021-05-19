@@ -165,10 +165,10 @@ export default function Index({ uebungen }) {
     <Layout>
       <div className="grid xl:grid-cols-4 w-full h-full">
         <div className="place-self-center xl:place-self-start xl:justify-self-center xl:sticky xl:top-72 mb-5 xl:mb-0">
-          <div className="shadow-2xl rounded-2xl xl:mr-5 text-white bg-red-600 flex flex-col gap-5 p-4">
+          <div className="shadow-2xl rounded-2xl xl:mr-5 text-white bg-red-600 flex flex-col gap-2 xl:gap-4 p-4">
             <div>
               <h3 className="inline mr-2">Übungstyp:</h3>
-              <div className="grid grid-cols-2 ss:grid-cols-2 xl:grid-cols-1 gap-x-2">
+              <div className="grid grid-cols-2 xl:grid-cols-1 gap-x-2">
                 <div>
                   <input
                     className="form-checkbox text-white h-4 w-4 align-middle"
