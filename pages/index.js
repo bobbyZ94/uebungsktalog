@@ -5,6 +5,7 @@
 import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import TabelAndSearchbox from '../components/TableAndSearchbox';
+import filterUebungen from '../functions/filterUebungen';
 
 const client = require('contentful').createClient({
   space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
@@ -24,7 +25,7 @@ export async function getStaticProps() {
 }
 
 export default function Index({ uebungen }) {
-  const [uebungstyp, setUebungstyp] = useState({
+  const [uebungstypChecked, setUebungstypChecked] = useState({
     Frei: true,
     Freihantel: true,
     Cardio: true,
@@ -50,7 +51,7 @@ export default function Index({ uebungen }) {
   };
 
   const toggleCheckUebungstyp = (inputName) => {
-    setUebungstyp((prevState) => {
+    setUebungstypChecked((prevState) => {
       const newState = { ...prevState };
       newState[inputName] = !prevState[inputName];
       return newState;
@@ -82,85 +83,6 @@ export default function Index({ uebungen }) {
     }
   }, [checked]);
 
-  function filterUebungen(uebungen) {
-    if (
-      checkedAll &&
-      uebungstyp.Frei &&
-      uebungstyp.Cardio &&
-      uebungstyp.Freihantel &&
-      uebungstyp.Maschine
-    ) {
-      return uebungen.items;
-    }
-
-    let result = [];
-
-    if (uebungstyp.Frei) {
-      const filter = uebungen.items.filter(
-        (uebungen) => uebungen.fields.uebungstyp === 'Frei'
-      );
-      result = [...result, ...filter];
-    }
-    if (uebungstyp.Freihantel) {
-      const filter = uebungen.items.filter(
-        (uebungen) => uebungen.fields.uebungstyp === 'Freihantel'
-      );
-      result = [...result, ...filter];
-    }
-    if (uebungstyp.Maschine) {
-      const filter = uebungen.items.filter(
-        (uebungen) => uebungen.fields.uebungstyp === 'Maschine'
-      );
-      result = [...result, ...filter];
-    }
-    if (uebungstyp.Cardio) {
-      const filter = uebungen.items.filter(
-        (uebungen) => uebungen.fields.uebungstyp === 'Cardio'
-      );
-      result = [...result, ...filter];
-    }
-
-    let resultMuskelgruppen = [];
-    if (checked.Beine) {
-      const filter = result.filter((uebungen) =>
-        uebungen.fields.muskelgruppe.includes('Beine')
-      );
-      resultMuskelgruppen = [...resultMuskelgruppen, ...filter];
-    }
-    if (checked.Bauch) {
-      const filter = result.filter((uebungen) =>
-        uebungen.fields.muskelgruppe.includes('Bauch')
-      );
-      resultMuskelgruppen = [...resultMuskelgruppen, ...filter];
-    }
-    if (checked.Ruecken) {
-      const filter = result.filter((uebungen) =>
-        uebungen.fields.muskelgruppe.includes('Rücken')
-      );
-      resultMuskelgruppen = [...resultMuskelgruppen, ...filter];
-    }
-    if (checked.Brust) {
-      const filter = result.filter((uebungen) =>
-        uebungen.fields.muskelgruppe.includes('Brust')
-      );
-      resultMuskelgruppen = [...resultMuskelgruppen, ...filter];
-    }
-    if (checked.Schultern) {
-      const filter = result.filter((uebungen) =>
-        uebungen.fields.muskelgruppe.includes('Schultern')
-      );
-      resultMuskelgruppen = [...resultMuskelgruppen, ...filter];
-    }
-    if (checked.Arme) {
-      const filter = result.filter((uebungen) =>
-        uebungen.fields.muskelgruppe.includes('Arme')
-      );
-      resultMuskelgruppen = [...resultMuskelgruppen, ...filter];
-    }
-
-    return resultMuskelgruppen;
-  }
-
   return (
     <Layout>
       <div className="grid xl:grid-cols-4 w-full h-full">
@@ -174,7 +96,7 @@ export default function Index({ uebungen }) {
                     className="form-checkbox text-white h-4 w-4 align-middle"
                     name="Frei"
                     type="checkbox"
-                    checked={uebungstyp.Frei}
+                    checked={uebungstypChecked.Frei}
                     onChange={() => toggleCheckUebungstyp('Frei')}
                   />
                   <lable className="ml-1 align-middle">Frei</lable>
@@ -184,7 +106,7 @@ export default function Index({ uebungen }) {
                     className="form-checkbox text-white h-4 w-4 align-middle"
                     name="Freihantel"
                     type="checkbox"
-                    checked={uebungstyp.Freihantel}
+                    checked={uebungstypChecked.Freihantel}
                     onChange={() => toggleCheckUebungstyp('Freihantel')}
                   />
                   <lable className="ml-1 align-middle">Freihantel</lable>
@@ -194,7 +116,7 @@ export default function Index({ uebungen }) {
                     className="form-checkbox text-white h-4 w-4 align-middle"
                     name="Maschine"
                     type="checkbox"
-                    checked={uebungstyp.Maschine}
+                    checked={uebungstypChecked.Maschine}
                     onChange={() => toggleCheckUebungstyp('Maschine')}
                   />
                   <lable className="ml-1 align-middle">Maschine</lable>
@@ -204,7 +126,7 @@ export default function Index({ uebungen }) {
                     className="form-checkbox text-white h-4 w-4 align-middle"
                     name="Cardio"
                     type="checkbox"
-                    checked={uebungstyp.Cardio}
+                    checked={uebungstypChecked.Cardio}
                     onChange={() => toggleCheckUebungstyp('Cardio')}
                   />
                   <lable className="ml-1 align-middle">Cardio</lable>
@@ -299,7 +221,14 @@ export default function Index({ uebungen }) {
         </div>
 
         <div className="rounded-2xl overflow-hidden shadow-2xl w-full place-self-start xl:col-span-3 inline-block">
-          <TabelAndSearchbox uebungen={filterUebungen(uebungen)} />
+          <TabelAndSearchbox
+            uebungen={filterUebungen(
+              uebungen,
+              uebungstypChecked,
+              checked,
+              checkedAll
+            )}
+          />
         </div>
       </div>
     </Layout>

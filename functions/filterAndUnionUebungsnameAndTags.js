@@ -1,7 +1,4 @@
 export default function filterAndUnionUebungsnameAndTags(uebungen, keyword) {
-  // if (!uebungen) {
-  //   return;
-  // }
   const resultUebungsname = uebungen.filter((uebung) =>
     uebung.fields.uebungsname.toLowerCase().includes(keyword.toLowerCase())
   );
