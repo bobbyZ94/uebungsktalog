@@ -1,4 +1,6 @@
 /* eslint-disable no-shadow */
+import { muskelgruppen, uebungstypen } from '../constants/constants';
+
 function filterUebungstyp(uebungen, uebungstypChecked, uebungstyp, result) {
   if (uebungstypChecked) {
     const filter = uebungen.items.filter(
@@ -12,12 +14,13 @@ function filterUebungstyp(uebungen, uebungstypChecked, uebungstyp, result) {
 function filterMuskelgruppe(
   result,
   resultMuskelgruppen,
-  checked,
+  muskelgruppeChecked,
   muskelgruppe
 ) {
-  if (checked) {
+  if (muskelgruppeChecked) {
     const filter = result.filter((uebungen) =>
-      uebungen.fields.muskelgruppe.includes(muskelgruppe)
+      // replacing the underscore with space as it is in contentful validation
+      uebungen.fields.muskelgruppe.includes(muskelgruppe.replace('_', ' '))
     );
     return [...resultMuskelgruppen, ...filter];
   }
@@ -27,21 +30,15 @@ function filterMuskelgruppe(
 export default function filterUebungen(
   uebungen,
   uebungstypChecked,
-  checked,
-  checkedAll
+  muskelgruppeChecked,
+  checkedAllUebungstypen,
+  checkedAllMuskelgruppen
 ) {
-  if (
-    checkedAll &&
-    uebungstypChecked.Frei &&
-    uebungstypChecked.Cardio &&
-    uebungstypChecked.Freihantel &&
-    uebungstypChecked.Maschine
-  ) {
+  if (checkedAllMuskelgruppen && checkedAllUebungstypen) {
     return uebungen.items;
   }
 
   let result = [];
-  const uebungstypen = ['Frei', 'Freihantel', 'Maschine', 'Cardio'];
   for (const uebungstyp of uebungstypen) {
     result = filterUebungstyp(
       uebungen,
@@ -52,19 +49,11 @@ export default function filterUebungen(
   }
 
   let resultMuskelgruppen = [];
-  const muskelgruppen = [
-    'Beine',
-    'Bauch',
-    'Ruecken',
-    'Brust',
-    'Schultern',
-    'Arme',
-  ];
   for (const muskelgruppe of muskelgruppen) {
     resultMuskelgruppen = filterMuskelgruppe(
       result,
       resultMuskelgruppen,
-      checked[muskelgruppe],
+      muskelgruppeChecked[muskelgruppe],
       muskelgruppe
     );
   }

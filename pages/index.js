@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import TabelAndSearchbox from '../components/TableAndSearchbox';
 import filterUebungen from '../functions/filterUebungen';
+import { muskelgruppen, uebungstypen } from '../constants/constants';
 
 const client = require('contentful').createClient({
   space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
@@ -25,25 +26,36 @@ export async function getStaticProps() {
 }
 
 export default function Index({ uebungen }) {
+  console.log(uebungen);
+
+  const [checkedAllUebungstypen, setCheckedAllUebungstypen] = useState(false);
   const [uebungstypChecked, setUebungstypChecked] = useState({
-    Frei: true,
     Freihantel: true,
-    Cardio: true,
     Maschine: true,
+    Seilzüge: true,
+    Kleingeräte: true,
+    Bodyweight: true,
+    Cardio: true,
+    Mobility: true,
   });
 
-  const [checkedAll, setCheckedAll] = useState(false);
-  const [checked, setChecked] = useState({
-    Beine: true,
+  const [checkedAllMuskelgruppen, setCheckedAllMuskelgruppen] = useState(false);
+  const [muskelgruppeChecked, setMuskelgruppeChecked] = useState({
+    Unterschenkel: true,
+    Oberschenkel: true,
+    Gesäß: true,
     Bauch: true,
-    Ruecken: true,
+    Unterer_Rücken: true,
+    Oberer_Rücken: true,
     Brust: true,
     Schultern: true,
-    Arme: true,
+    Triceps: true,
+    Biceps: true,
+    Unterarme: true,
   });
 
-  const toggleCheck = (inputName) => {
-    setChecked((prevState) => {
+  const toggleCheckMuskelgruppe = (inputName) => {
+    setMuskelgruppeChecked((prevState) => {
       const newState = { ...prevState };
       newState[inputName] = !prevState[inputName];
       return newState;
@@ -58,9 +70,20 @@ export default function Index({ uebungen }) {
     });
   };
 
-  const selectAll = (value) => {
-    setCheckedAll(value);
-    setChecked((prevState) => {
+  const selectAllMuskelgruppen = (value) => {
+    setCheckedAllMuskelgruppen(value);
+    setMuskelgruppeChecked((prevState) => {
+      const newState = { ...prevState };
+      for (const inputName in newState) {
+        newState[inputName] = value;
+      }
+      return newState;
+    });
+  };
+
+  const selectAllUebungstypen = (value) => {
+    setCheckedAllUebungstypen(value);
+    setUebungstypChecked((prevState) => {
       const newState = { ...prevState };
       for (const inputName in newState) {
         newState[inputName] = value;
@@ -70,66 +93,64 @@ export default function Index({ uebungen }) {
   };
 
   useEffect(() => {
-    let allChecked = true;
-    for (const inputName in checked) {
-      if (checked[inputName] === false) {
-        allChecked = false;
+    let allMuskelgruppenChecked = true;
+    for (const inputName in muskelgruppeChecked) {
+      if (muskelgruppeChecked[inputName] === false) {
+        allMuskelgruppenChecked = false;
       }
     }
-    if (allChecked) {
-      setCheckedAll(true);
+    if (allMuskelgruppenChecked) {
+      setCheckedAllMuskelgruppen(true);
     } else {
-      setCheckedAll(false);
+      setCheckedAllMuskelgruppen(false);
     }
-  }, [checked]);
+
+    let allUebungstypenChecked = true;
+    for (const inputName in uebungstypChecked) {
+      if (uebungstypChecked[inputName] === false) {
+        allUebungstypenChecked = false;
+      }
+    }
+    if (allUebungstypenChecked) {
+      setCheckedAllUebungstypen(true);
+    } else {
+      setCheckedAllUebungstypen(false);
+    }
+  }, [muskelgruppeChecked, uebungstypChecked]);
 
   return (
     <Layout>
       <div className="grid xl:grid-cols-4 w-full h-full">
-        <div className="place-self-center xl:place-self-start xl:justify-self-center xl:sticky xl:top-72 mb-5 xl:mb-0">
+        <div className="place-self-center xl:place-self-start xl:justify-self-center xl:sticky xl:top-20 mb-5 xl:mb-0">
           <div className="shadow-2xl rounded-2xl xl:mr-5 text-white bg-red-600 flex flex-col gap-2 xl:gap-4 p-4">
             <div>
               <h3 className="inline mr-2">Übungstyp:</h3>
               <div className="grid grid-cols-2 xl:grid-cols-1 gap-x-2">
+                {uebungstypen.map((uebungstyp) => (
+                  <div>
+                    <label>
+                      <input
+                        className="form-checkbox text-white h-4 w-4 align-middle"
+                        name={uebungstyp}
+                        type="checkbox"
+                        checked={uebungstypChecked[uebungstyp]}
+                        onChange={() => toggleCheckUebungstyp(uebungstyp)}
+                      />
+                      <span className="ml-1 align-middle">{uebungstyp}</span>
+                    </label>
+                  </div>
+                ))}
                 <div>
-                  <input
-                    className="form-checkbox text-white h-4 w-4 align-middle"
-                    name="Frei"
-                    type="checkbox"
-                    checked={uebungstypChecked.Frei}
-                    onChange={() => toggleCheckUebungstyp('Frei')}
-                  />
-                  <lable className="ml-1 align-middle">Frei</lable>
-                </div>
-                <div>
-                  <input
-                    className="form-checkbox text-white h-4 w-4 align-middle"
-                    name="Freihantel"
-                    type="checkbox"
-                    checked={uebungstypChecked.Freihantel}
-                    onChange={() => toggleCheckUebungstyp('Freihantel')}
-                  />
-                  <lable className="ml-1 align-middle">Freihantel</lable>
-                </div>
-                <div>
-                  <input
-                    className="form-checkbox text-white h-4 w-4 align-middle"
-                    name="Maschine"
-                    type="checkbox"
-                    checked={uebungstypChecked.Maschine}
-                    onChange={() => toggleCheckUebungstyp('Maschine')}
-                  />
-                  <lable className="ml-1 align-middle">Maschine</lable>
-                </div>
-                <div>
-                  <input
-                    className="form-checkbox text-white h-4 w-4 align-middle"
-                    name="Cardio"
-                    type="checkbox"
-                    checked={uebungstypChecked.Cardio}
-                    onChange={() => toggleCheckUebungstyp('Cardio')}
-                  />
-                  <lable className="ml-1 align-middle">Cardio</lable>
+                  <label>
+                    <input
+                      className="form-checkbox text-white h-4 w-4 align-middle"
+                      name="Mobility"
+                      type="checkbox"
+                      checked={checkedAllUebungstypen}
+                      onChange={(e) => selectAllUebungstypen(e.target.checked)}
+                    />
+                    <span className="ml-1 align-middle">Alle Übungstypen</span>
+                  </label>
                 </div>
               </div>
             </div>
@@ -137,83 +158,35 @@ export default function Index({ uebungen }) {
             <div>
               <h3 className="mr-2">Muskelgruppe:</h3>
               <div className="grid grid-cols-2 ss:grid-cols-3 xl:grid-cols-1 gap-x-2">
-                <div>
-                  <input
-                    className="form-checkbox text-white h-4 w-4 align-middle"
-                    name="Beine"
-                    type="checkbox"
-                    checked={checked.Beine}
-                    onChange={() => toggleCheck('Beine')}
-                  />
-                  <lable className="ml-1 align-middle">Beine</lable>
-                </div>
-
-                <div>
-                  <input
-                    className="form-checkbox text-white h-4 w-4 align-middle"
-                    name="Bauch"
-                    type="checkbox"
-                    checked={checked.Bauch}
-                    onChange={() => toggleCheck('Bauch')}
-                  />
-                  <lable className="ml-1 align-middle">Bauch</lable>
-                </div>
-
-                <div>
-                  <input
-                    className="form-checkbox text-white h-4 w-4 align-middle"
-                    name="Rücken"
-                    type="checkbox"
-                    checked={checked.Ruecken}
-                    onChange={() => toggleCheck('Ruecken')}
-                  />
-                  <lable className="ml-1 align-middle">Rücken</lable>
-                </div>
-
-                <div>
-                  <input
-                    className="form-checkbox text-white h-4 w-4 align-middle"
-                    name="Brust"
-                    type="checkbox"
-                    checked={checked.Brust}
-                    onChange={() => toggleCheck('Brust')}
-                  />
-                  <lable className="ml-1 align-middle">Brust</lable>
-                </div>
-
-                <div>
-                  <input
-                    className="form-checkbox text-white h-4 w-4 align-middle"
-                    name="Schultern"
-                    type="checkbox"
-                    checked={checked.Schultern}
-                    onChange={() => toggleCheck('Schultern')}
-                  />
-                  <lable className="ml-1 align-middle">Schultern</lable>
-                </div>
-
-                <div>
-                  <input
-                    className="form-checkbox text-white h-4 w-4 align-middle"
-                    name="Arme"
-                    type="checkbox"
-                    checked={checked.Arme}
-                    onChange={() => toggleCheck('Arme')}
-                  />
-                  <lable className="ml-1 align-middle">Arme</lable>
-                </div>
-
+                {muskelgruppen.map((muskelgruppe) => (
+                  <div>
+                    <label>
+                      <input
+                        className="form-checkbox text-white h-4 w-4 align-middle"
+                        name={muskelgruppe}
+                        type="checkbox"
+                        checked={muskelgruppeChecked[muskelgruppe]}
+                        onChange={() => toggleCheckMuskelgruppe(muskelgruppe)}
+                      />
+                      <span className="ml-1 align-middle">
+                        {muskelgruppe.replace('_', ' ')}
+                      </span>
+                    </label>
+                  </div>
+                ))}
                 <div className="col-span-2 ss:col-span-3 xl:col-span-1">
-                  <input
-                    className="form-checkbox text-white h-4 w-4 align-middle"
-                    name="alle"
-                    type="checkbox"
-                    checked={checkedAll}
-                    onChange={(e) => selectAll(e.target.checked)}
-                  />
-                  <lable className="ml-1 align-middle">
-                    Alle Muskelgruppen
-                  </lable>
+                  <label>
+                    <input
+                      className="form-checkbox text-white h-4 w-4 align-middle"
+                      name="alle"
+                      type="checkbox"
+                      checked={checkedAllMuskelgruppen}
+                      onChange={(e) => selectAllMuskelgruppen(e.target.checked)}
+                    />
+                    <span className="ml-1 align-middle">
+                      Alle Muskelgruppen
+                    </span>
+                  </label>
                 </div>
               </div>
             </div>
@@ -225,8 +198,9 @@ export default function Index({ uebungen }) {
             uebungen={filterUebungen(
               uebungen,
               uebungstypChecked,
-              checked,
-              checkedAll
+              muskelgruppeChecked,
+              checkedAllUebungstypen,
+              checkedAllMuskelgruppen
             )}
           />
         </div>
