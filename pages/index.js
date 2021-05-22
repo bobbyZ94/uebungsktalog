@@ -26,8 +26,6 @@ export async function getStaticProps() {
 }
 
 export default function Index({ uebungen }) {
-  console.log(uebungen);
-
   const [checkedAllUebungstypen, setCheckedAllUebungstypen] = useState(false);
   const [uebungstypChecked, setUebungstypChecked] = useState({
     Freihantel: true,
