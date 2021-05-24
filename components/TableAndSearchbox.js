@@ -3,8 +3,68 @@ import { useState } from 'react';
 import filterAndUnionUebungsnameAndTags from '../functions/filterAndUnionUebungsnameAndTags';
 
 export default function TableAndSearchbox({ uebungen }) {
+  const arrowUp = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-5 w-5"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fillRule="evenodd"
+        d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z"
+        clipRule="evenodd"
+      />
+    </svg>
+  );
+  const arrowDown = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-5 w-5"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fillRule="evenodd"
+        d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z"
+        clipRule="evenodd"
+      />
+    </svg>
+  );
   const [keyword, setKeyword] = useState('');
   const star = '*';
+  const [sortBy, setSortBy] = useState('uebungsnameAlphabetically');
+  const [
+    sortUebungsnameAlphabetically,
+    setSortUebungsnameAlphabetically,
+  ] = useState(true);
+  const [sortSchwierigkeitsgrad, setSortSchwierigkeitsgrad] = useState(false);
+  function sortList(a, b) {
+    if (sortBy === 'uebungsnameAlphabetically') {
+      const textA = a.fields.uebungsname.toUpperCase();
+      const textB = b.fields.uebungsname.toUpperCase();
+      if (sortUebungsnameAlphabetically) {
+        return textA.localeCompare(textB);
+      }
+      return textB.localeCompare(textA);
+    }
+    if (sortBy === 'schwierigkeitsgrad') {
+      const gradA = a.fields.schwierigkeitsgrad;
+      const gradB = b.fields.schwierigkeitsgrad;
+      if (sortSchwierigkeitsgrad) {
+        return gradA - gradB;
+      }
+      return gradB - gradA;
+    }
+  }
+  function handleUebungsname() {
+    setSortBy('uebungsnameAlphabetically');
+    setSortUebungsnameAlphabetically(!sortUebungsnameAlphabetically);
+  }
+  function handleSchwierigkeitsgrad() {
+    setSortBy('schwierigkeitsgrad');
+    setSortSchwierigkeitsgrad(!sortSchwierigkeitsgrad);
+  }
   return (
     <table className="w-full text-center text-white ">
       <tbody className="">
@@ -20,8 +80,16 @@ export default function TableAndSearchbox({ uebungen }) {
           </th>
         </tr>
         <tr className="bg-red-600">
-          <th className="py-2 px-2 border-white xs:border-r-2 border-b-2 table-cell">
-            Übung
+          <th
+            onClick={handleUebungsname}
+            className="cursor-pointer py-2 px-2 border-white xs:border-r-2 border-b-2 table-cell"
+          >
+            <div className="flex justify-center">
+              <div>Übung</div>
+              <div className="ml-1 self-center">
+                {sortUebungsnameAlphabetically ? arrowDown : arrowUp}
+              </div>
+            </div>
           </th>
 
           <th className="py-2 px-2 border-white ss:border-r-2 hidden ss:table-cell border-b-2">
@@ -32,8 +100,16 @@ export default function TableAndSearchbox({ uebungen }) {
             Muskelgruppe
           </th>
 
-          <th className="py-2 px-2 border-white sm:border-r-2 hidden sm:table-cell border-b-2">
-            Schwierigkeit
+          <th
+            onClick={handleSchwierigkeitsgrad}
+            className="cursor-pointer py-2 px-2 border-white sm:border-r-2 hidden sm:table-cell border-b-2"
+          >
+            <div className="flex justify-center">
+              <div>Schwierigkeit</div>
+              <div className="ml-1 self-center">
+                {sortSchwierigkeitsgrad ? arrowDown : arrowUp}
+              </div>
+            </div>
           </th>
           <th className="py-2 px-2 border-white border-b-2 hidden md:table-cell">
             Tags
@@ -41,11 +117,7 @@ export default function TableAndSearchbox({ uebungen }) {
         </tr>
         {uebungen &&
           filterAndUnionUebungsnameAndTags(uebungen, keyword)
-            .sort(function (a, b) {
-              const textA = a.fields.uebungsname.toUpperCase();
-              const textB = b.fields.uebungsname.toUpperCase();
-              return textA.localeCompare(textB);
-            })
+            .sort(sortList)
             .map((uebung) => (
               <Link href={`/uebungen/${uebung.fields.slug}`}>
                 <tr className="bg-red-200 hover:bg-red-600 text-gray-900 hover:text-white cursor-pointer">
