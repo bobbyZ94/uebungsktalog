@@ -38,7 +38,7 @@ export default function TableAndSearchbox({ uebungen }) {
     sortUebungsnameAlphabetically,
     setSortUebungsnameAlphabetically,
   ] = useState(true);
-  const [sortSchwierigkeitsgrad, setSortSchwierigkeitsgrad] = useState(false);
+  const [sortSchwierigkeitsgrad, setSortSchwierigkeitsgrad] = useState(true);
   function sortList(a, b) {
     if (sortBy === 'uebungsnameAlphabetically') {
       const textA = a.fields.uebungsname.toUpperCase();
