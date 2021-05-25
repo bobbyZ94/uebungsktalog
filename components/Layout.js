@@ -16,21 +16,19 @@ export default function Layout({ children, title = 'Übungskatalog Unifit' }) {
         <meta charSet="utf-8" />
         <meta name="description" content="Übungskatalog des Unifit" />
       </Head>
-
+      <div className="w-full h-full">
+        <Image
+          className="z-10 opacity-70"
+          src="/unifit-sw.jpg"
+          layout="fill"
+          objectFit="cover"
+          priority
+        />
+      </div>
       <div
         className="overflow-y-auto
       text-sm sm:text-base lg:text-lg flex flex-col h-screen"
       >
-        <div className="w-screen h-screen">
-          <Image
-            className="z-10 opacity-70"
-            src="/unifit-sw.jpg"
-            layout="fill"
-            objectFit="cover"
-            priority
-          />
-        </div>
-
         <div className="z-20">
           <Header />
         </div>
