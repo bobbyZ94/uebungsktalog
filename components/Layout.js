@@ -16,7 +16,7 @@ export default function Layout({ children, title = 'Übungskatalog Unifit' }) {
         <meta charSet="utf-8" />
         <meta name="description" content="Übungskatalog des Unifit" />
       </Head>
-      <div className="w-full h-full">
+      <div className="fixed w-full h-full">
         <Image
           className="z-10 opacity-70"
           src="/unifit-sw.jpg"

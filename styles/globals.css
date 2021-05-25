@@ -10,12 +10,13 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   font-family: 'Roboto-Regular', sans-serif;
-  /* background-image: url("../public/unifit-sw-80.jpg");
-  background-position: center; */
-  min-height: -webkit-fill-available;
-  min-height: 100vh;
 }
 @layer base {
   tbody tr:last-child td{
