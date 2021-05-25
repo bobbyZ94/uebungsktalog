@@ -119,7 +119,10 @@ export default function TableAndSearchbox({ uebungen }) {
           filterAndUnionUebungsnameAndTags(uebungen, keyword)
             .sort(sortList)
             .map((uebung) => (
-              <Link href={`/uebungen/${uebung.fields.slug}`}>
+              <Link
+                key={uebung.fields.uebungsname}
+                href={`/uebungen/${uebung.fields.slug}`}
+              >
                 <tr className="bg-red-200 hover:bg-red-600 text-gray-900 hover:text-white cursor-pointer">
                   <td className="py-2 px-2 border-white xs:border-r-2 border-b-2 table-cell">
                     <div>{uebung.fields.uebungsname}</div>

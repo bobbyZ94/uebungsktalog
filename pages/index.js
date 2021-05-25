@@ -170,7 +170,7 @@ export default function Index({ uebungen }) {
               {visibleUebungstypen && (
                 <div className="grid grid-cols-2 xl:grid-cols-1 gap-x-2">
                   {uebungstypen.map((uebungstyp) => (
-                    <div>
+                    <div key={uebungstyp}>
                       <label>
                         <input
                           className="form-checkbox text-white h-4 w-4 align-middle"
@@ -216,7 +216,7 @@ export default function Index({ uebungen }) {
               {visibleMuskelgruppen && (
                 <div className="grid grid-cols-2 xl:grid-cols-1 gap-x-2">
                   {muskelgruppen.map((muskelgruppe) => (
-                    <div>
+                    <div key={muskelgruppe}>
                       <label>
                         <input
                           className="form-checkbox text-white h-4 w-4 align-middle"

@@ -7,6 +7,9 @@ module.exports = {
       gridTemplateRows: {
       'auto': 'auto',
       },
+      zIndex: {
+        '-10': '-10',
+       }
     },
     screens: {
       'no': '0px',

@@ -41,13 +41,13 @@ export default function Header() {
           />
         </div>
       )}
-      <Link href="/">
-        <a>
+      <div className="cursor-pointer">
+        <Link href="/">
           <h1 className="text-center sm:mr-5 transform hover:scale-110">
             ÜBUNGSKATALOG
           </h1>
-        </a>
-      </Link>
+        </Link>
+      </div>
 
       <div className="cursor-pointer">
         <div

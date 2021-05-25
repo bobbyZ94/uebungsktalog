@@ -12,6 +12,8 @@
 
 body {
   font-family: 'Roboto-Regular', sans-serif;
+  /* background-image: url("../public/unifit-sw-80.jpg");
+  background-position: center; */
 }
 @layer base {
   tbody tr:last-child td{
