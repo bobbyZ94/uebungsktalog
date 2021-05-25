@@ -21,7 +21,7 @@ export default function Layout({ children, title = 'Übungskatalog Unifit' }) {
         className="overflow-y-auto
       text-sm sm:text-base lg:text-lg flex flex-col h-screen"
       >
-        <div>
+        <div className="w-screen h-screen">
           <Image
             className="z-10 opacity-70"
             src="/unifit-sw.jpg"

@@ -73,7 +73,6 @@ export default function Uebung({ uebung }) {
   const { uebungstyp } = uebung.fields;
   const { schwierigkeitsgrad } = uebung.fields;
   const star = '*';
-  console.log(`bildANfang:${bildAnfang}`);
   return (
     <Layout title={`${uebungsName} - Unfit Übungskatalog`}>
       <div className="flex items-center justify-center">
