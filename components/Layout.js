@@ -23,7 +23,7 @@ export default function Layout({ children, title = 'Übungskatalog Unifit' }) {
       >
         <div>
           <Image
-            className="z-10"
+            className="z-10 opacity-70"
             src="/unifit-sw.jpg"
             layout="fill"
             objectFit="cover"
