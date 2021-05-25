@@ -92,7 +92,7 @@ export default function Uebung({ uebung }) {
                 </h3>
               </div>
 
-              <div className="bg-red-600 p-3 rounded-2xl max-w-md">
+              <div className="bg-red-600 p-3 rounded-2xl max-w-lg">
                 <div className="overflow-hidden rounded-2xl">
                   <ReactPlayer
                     controls
@@ -105,7 +105,7 @@ export default function Uebung({ uebung }) {
             </div>
           )}
 
-          <div className="flex flex-col">
+          <div className="flex flex-col max-w-3xl">
             <div className="flex justify-start">
               <h3 className="transform translate-x-5 translate-y-1 rounded-t-2xl pt-3 px-3 text-center bg-red-600">
                 Anleitung
@@ -138,7 +138,7 @@ export default function Uebung({ uebung }) {
                   Übungsanfang
                 </h3>
               </div>
-              <div className="bg-red-600 p-3 rounded-2xl max-w-md flex">
+              <div className="bg-red-600 p-3 rounded-2xl max-w-lg flex">
                 <Image
                   src={`https:${bildAnfang}`}
                   width={bildAnfangWidth}
@@ -155,7 +155,7 @@ export default function Uebung({ uebung }) {
                   Übungsende
                 </h3>
               </div>
-              <div className="bg-red-600 p-3 rounded-2xl max-w-md flex">
+              <div className="bg-red-600 p-3 rounded-2xl max-w-lg flex">
                 <Image
                   src={`https:${bildEnde}`}
                   width={bildEndeWidth}
@@ -166,7 +166,7 @@ export default function Uebung({ uebung }) {
             </div>
           )}
 
-          <div className="p-3 bg-red-600 overflow-hidden rounded-2xl text-white">
+          <div className="p-3 bg-red-600 overflow-hidden rounded-2xl text-white max-w-md">
             <table>
               <tbody>
                 <tr>
