@@ -87,7 +87,7 @@ export default function Uebung({ uebung }) {
           {uebungsVideo && (
             <div className="flex flex-col">
               <div className="flex justify-end">
-                <h3 className="transform -translate-x-5 rounded-t-2xl pt-3 px-3 text-center bg-red-600">
+                <h3 className="transform -translate-x-5 translate-y-1 rounded-t-2xl pt-3 px-3 text-center bg-red-600">
                   Übungsvideo
                 </h3>
               </div>
@@ -107,7 +107,7 @@ export default function Uebung({ uebung }) {
 
           <div className="flex flex-col">
             <div className="flex justify-start">
-              <h3 className="transform translate-x-5 rounded-t-2xl pt-3 px-3 text-center bg-red-600">
+              <h3 className="transform translate-x-5 translate-y-1 rounded-t-2xl pt-3 px-3 text-center bg-red-600">
                 Anleitung
               </h3>
             </div>
@@ -133,7 +133,7 @@ export default function Uebung({ uebung }) {
           </div>
           {bildAnfang && (
             <div className="flex flex-col">
-              <div className="flex justify-start transform translate-x-5">
+              <div className="flex justify-start transform translate-x-5 translate-y-1">
                 <h3 className="rounded-t-2xl pt-3 px-3 text-center bg-red-600">
                   Übungsanfang
                 </h3>
@@ -150,7 +150,7 @@ export default function Uebung({ uebung }) {
           )}
           {bildEnde && (
             <div className="flex flex-col">
-              <div className="flex justify-end transform -translate-x-5">
+              <div className="flex justify-end transform -translate-x-5 translate-y-1">
                 <h3 className="rounded-t-2xl pt-3 px-3 text-center bg-red-600">
                   Übungsende
                 </h3>
