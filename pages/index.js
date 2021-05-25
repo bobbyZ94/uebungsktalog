@@ -183,7 +183,7 @@ export default function Index({ uebungen }) {
                       </label>
                     </div>
                   ))}
-                  <div>
+                  <div className="col-span-2 xl:col-span-1">
                     <label>
                       <input
                         className="form-checkbox text-white h-4 w-4 align-middle"

@@ -20,7 +20,7 @@ body {
     border-bottom: 0;
   }
   h1 {
-    @apply font-semibold text-base mm:text-xl sm:text-2xl md:text-3xl
+    @apply font-semibold text-lg mm:text-xl sm:text-2xl md:text-3xl
   }
   h2 {
     @apply font-semibold text-base mm:text-lg sm:text-xl md:text-2xl

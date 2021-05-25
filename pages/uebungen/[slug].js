@@ -73,88 +73,103 @@ export default function Uebung({ uebung }) {
   const { uebungstyp } = uebung.fields;
   const { schwierigkeitsgrad } = uebung.fields;
   const star = '*';
-
+  console.log(`bildANfang:${bildAnfang}`);
   return (
     <Layout title={`${uebungsName} - Unfit Übungskatalog`}>
       <div className="flex items-center justify-center">
-        <div className="place-items-center grid grid-cols-1 md:grid-cols-2 p-5 bg-red-600 rounded-2xl ss:w-10/12 mm:w-8/12 xl:w-6/12 text-white gap-5">
-          <h1 className="md:col-span-2 bg-red-600 rounded-2xl underline text-center">
-            {uebungsName}
-          </h1>
-
-          <div className="grid grid-cols-1 md:col-span-2 border-2 border-white">
-            <div className="">
-              <div className="flex">
-                <h3 className="px-1 rounded-2xl transform -translate-y-3 sm:-translate-y-4 translate-x-1 text-center bg-red-600">
-                  Anleitung
-                </h3>
-              </div>
-              <div className="max-w-md float-right p-2">
-                <div className="overflow-hidden rounded-2xl">
-                  {uebungsVideo && (
-                    <ReactPlayer
-                      controls
-                      width="100%"
-                      height="100%"
-                      url={uebungsVideo}
-                    />
-                  )}
-                </div>
-              </div>
-              <div className="px-2">
-                {documentToReactComponents(uebung.fields.uebungsbeschreibung, {
-                  renderNode: {
-                    // eslint-disable-next-line react/display-name
-                    [BLOCKS.EMBEDDED_ASSET]: (node) => (
-                      <div className="flex justify-center my-5">
-                        <Image
-                          src={`https:${node.data.target.fields.file.url}`}
-                          width={
-                            node.data.target.fields.file.details.image.width
-                          }
-                          height={
-                            node.data.target.fields.file.details.image.height
-                          }
-                        />
-                      </div>
-                    ),
-                  },
-                })}
-              </div>
-            </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 p-2 mt-3 place-items-center">
-              <div className="max-w-md">
-                <h3 className="font-semibold">Übungsanfang</h3>
-                <Image
-                  src={bildAnfang ? `https:${bildAnfang}` : '/placeholder.png'}
-                  width={bildAnfang ? bildAnfangWidth : '1600px'}
-                  height={bildAnfang ? bildAnfangHeight : '1415px'}
-                  className="rounded-2xl"
-                />
-              </div>
-              <div className="max-w-md">
-                <h3 className="font-semibold">Übungsende</h3>
-                <Image
-                  src={bildEnde ? `https:${bildEnde}` : '/placeholder.png'}
-                  width={bildEnde ? bildEndeWidth : '1600px'}
-                  height={bildEnde ? bildEndeHeight : '1415px'}
-                  className="rounded-2xl"
-                />
-              </div>
-            </div>
+        <div className="gap-5 flex flex-col justify-center place-items-center ss:w-10/12 mm:w-8/12 xl:w-6/12 text-white">
+          <div className="bg-red-600  rounded-2xl p-3 flex-col text-center">
+            <div>Typ: {uebungstyp}</div>
+            <h1 className="mt-2">
+              <span className="uppercase">{uebungsName}</span>
+            </h1>
           </div>
 
-          <div className="md:col-span-2 bg-red-600 overflow-hidden rounded-2xl p-3">
+          {uebungsVideo && (
+            <div className="flex flex-col">
+              <div className="flex justify-end">
+                <h3 className="transform -translate-x-5 rounded-t-2xl pt-3 px-3 text-center bg-red-600">
+                  Übungsvideo
+                </h3>
+              </div>
+
+              <div className="bg-red-600 p-3 rounded-2xl max-w-md">
+                <div className="overflow-hidden rounded-2xl">
+                  <ReactPlayer
+                    controls
+                    width="100%"
+                    height="100%"
+                    url={uebungsVideo}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="flex flex-col">
+            <div className="flex justify-start">
+              <h3 className="transform translate-x-5 rounded-t-2xl pt-3 px-3 text-center bg-red-600">
+                Anleitung
+              </h3>
+            </div>
+
+            <div className="p-3 rounded-2xl bg-red-600">
+              {documentToReactComponents(uebung.fields.uebungsbeschreibung, {
+                renderNode: {
+                  // eslint-disable-next-line react/display-name
+                  [BLOCKS.EMBEDDED_ASSET]: (node) => (
+                    <div className="flex justify-center my-5">
+                      <Image
+                        src={`https:${node.data.target.fields.file.url}`}
+                        width={node.data.target.fields.file.details.image.width}
+                        height={
+                          node.data.target.fields.file.details.image.height
+                        }
+                      />
+                    </div>
+                  ),
+                },
+              })}
+            </div>
+          </div>
+          {bildAnfang && (
+            <div className="flex flex-col">
+              <div className="flex justify-start transform translate-x-5">
+                <h3 className="rounded-t-2xl pt-3 px-3 text-center bg-red-600">
+                  Übungsanfang
+                </h3>
+              </div>
+              <div className="bg-red-600 p-3 rounded-2xl max-w-md flex">
+                <Image
+                  src={`https:${bildAnfang}`}
+                  width={bildAnfangWidth}
+                  height={bildAnfangHeight}
+                  className="rounded-2xl"
+                />
+              </div>
+            </div>
+          )}
+          {bildEnde && (
+            <div className="flex flex-col">
+              <div className="flex justify-end transform -translate-x-5">
+                <h3 className="rounded-t-2xl pt-3 px-3 text-center bg-red-600">
+                  Übungsende
+                </h3>
+              </div>
+              <div className="bg-red-600 p-3 rounded-2xl max-w-md flex">
+                <Image
+                  src={`https:${bildEnde}`}
+                  width={bildEndeWidth}
+                  height={bildEndeHeight}
+                  className="rounded-2xl"
+                />
+              </div>
+            </div>
+          )}
+
+          <div className="p-3 bg-red-600 overflow-hidden rounded-2xl text-white">
             <table>
               <tbody>
-                <tr>
-                  <td className="font-semibold border-b-2 border-r-2 border-white p-1">
-                    Übungstyp
-                  </td>
-                  <td className="text-center border-b-2 border-white p-1">
-                    {uebungstyp}
-                  </td>
-                </tr>
                 <tr>
                   <td className="pr-5 font-semibold border-b-2 border-r-2 border-white p-1">
                     Muskelgruppe
