@@ -9,7 +9,28 @@ module.exports = {
       },
       zIndex: {
         '-10': '-10',
-       }
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            color: 'white',
+            'ol > li::before': {
+              color: 'white',
+            },
+            'ul > li::before': {
+              backgroundColor: 'white',
+            },
+            p: {
+              'margin-top': '0.25rem',
+              'margin-bottom': '0.25rem',
+            },
+            li: {
+              'margin-top': '0.25rem',
+              'margin-bottom': '0.25rem',
+            }
+          },
+        },
+      },
     },
     screens: {
       'no': '0px',
@@ -26,5 +47,8 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms'),],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography')
+  ],
 };

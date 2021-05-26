@@ -1,5 +1,4 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { BLOCKS } from '@contentful/rich-text-types';
 import Image from 'next/image';
 import ReactPlayer from 'react-player';
 import Layout from '../../components/Layout';
@@ -112,23 +111,10 @@ export default function Uebung({ uebung }) {
               </h3>
             </div>
 
-            <div className="p-3 rounded-2xl bg-red-600">
-              {documentToReactComponents(uebung.fields.uebungsbeschreibung, {
-                renderNode: {
-                  // eslint-disable-next-line react/display-name
-                  [BLOCKS.EMBEDDED_ASSET]: (node) => (
-                    <div className="flex justify-center my-5">
-                      <Image
-                        src={`https:${node.data.target.fields.file.url}`}
-                        width={node.data.target.fields.file.details.image.width}
-                        height={
-                          node.data.target.fields.file.details.image.height
-                        }
-                      />
-                    </div>
-                  ),
-                },
-              })}
+            <div className="list-decimal p-3 rounded-2xl bg-red-600">
+              <article className="prose">
+                {documentToReactComponents(uebung.fields.uebungsbeschreibung)}
+              </article>
             </div>
           </div>
           {bildAnfang && (

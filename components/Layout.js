@@ -26,7 +26,7 @@ export default function Layout({ children, title = 'Übungskatalog Unifit' }) {
         />
       </div>
       <div
-        className="overflow-y-auto
+        className="
       text-sm sm:text-base lg:text-lg flex flex-col h-screen"
       >
         <div className="z-20">
