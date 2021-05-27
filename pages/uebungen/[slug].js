@@ -1,4 +1,6 @@
+/* eslint-disable no-shadow */
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { BLOCKS } from '@contentful/rich-text-types';
 import Image from 'next/image';
 import ReactPlayer from 'react-player';
 import Layout from '../../components/Layout';
@@ -72,6 +74,19 @@ export default function Uebung({ uebung }) {
   const { uebungstyp } = uebung.fields;
   const { schwierigkeitsgrad } = uebung.fields;
   const star = '*';
+  const options = {
+    renderNode: {
+      [BLOCKS.LIST_ITEM]: (node, children) => {
+        const UnTaggedChildren = documentToReactComponents(node, {
+          renderNode: {
+            [BLOCKS.PARAGRAPH]: (node, children) => children,
+          },
+        });
+
+        return <>{UnTaggedChildren}</>;
+      },
+    },
+  };
   return (
     <Layout title={`${uebungsName} - Unfit Übungskatalog`}>
       <div className="flex items-center justify-center">
@@ -113,7 +128,10 @@ export default function Uebung({ uebung }) {
 
             <div className="list-decimal p-3 rounded-2xl bg-red-600">
               <article className="prose">
-                {documentToReactComponents(uebung.fields.uebungsbeschreibung)}
+                {documentToReactComponents(
+                  uebung.fields.uebungsbeschreibung,
+                  options
+                )}
               </article>
             </div>
           </div>

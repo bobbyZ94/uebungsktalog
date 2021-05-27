@@ -20,14 +20,33 @@ module.exports = {
             'ul > li::before': {
               backgroundColor: 'white',
             },
-            p: {
-              'margin-top': '0.25rem',
-              'margin-bottom': '0.25rem',
+            'ol > li > *:last-child': {
+              'margin-bottom': 0,
             },
-            li: {
-              'margin-top': '0.25rem',
-              'margin-bottom': '0.25rem',
-            }
+            'ul > li > *:last-child': {
+              'margin-bottom': 0,
+            },
+            'ol > li > *:first-child': {
+              'margin-top': 0,
+            },
+            'ul > li > *:first-child': {
+              'margin-top': 0,
+            },
+            'ul > li': {
+              'margin-top': 0,
+              'margin-bottom': 0,
+            },
+            'ol > li': {
+              'margin-top': 0,
+              'margin-bottom': 0,
+            },
+            'ul': {
+              'margin-top': 0,
+              'margin-bottom': 0,
+            },
+            'p:empty': { 
+              display: 'none',
+            },
           },
         },
       },
