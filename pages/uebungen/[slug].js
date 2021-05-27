@@ -76,7 +76,7 @@ export default function Uebung({ uebung }) {
   const star = '*';
   const options = {
     renderNode: {
-      [BLOCKS.LIST_ITEM]: (node, children) => {
+      [BLOCKS.LIST_ITEM]: (node) => {
         const UnTaggedChildren = documentToReactComponents(node, {
           renderNode: {
             [BLOCKS.PARAGRAPH]: (node, children) => children,
@@ -127,7 +127,7 @@ export default function Uebung({ uebung }) {
             </div>
 
             <div className="list-decimal p-3 rounded-2xl bg-red-600">
-              <article className="prose">
+              <article className="prose lg:prose-lg">
                 {documentToReactComponents(
                   uebung.fields.uebungsbeschreibung,
                   options

@@ -49,6 +49,68 @@ module.exports = {
             },
           },
         },
+        sm: {
+          css: {
+            'ol > li > *:last-child': {
+              'margin-bottom': 0,
+            },
+            'ul > li > *:last-child': {
+              'margin-bottom': 0,
+            },
+            'ol > li > *:first-child': {
+              'margin-top': 0,
+            },
+            'ul > li > *:first-child': {
+              'margin-top': 0,
+            },
+            'ul > li': {
+              'margin-top': 0,
+              'margin-bottom': 0,
+            },
+            'ol > li': {
+              'margin-top': 0,
+              'margin-bottom': 0,
+            },
+            'ul': {
+              'margin-top': 0,
+              'margin-bottom': 0,
+            },
+            'p:empty': { 
+              display: 'none',
+            },
+          }
+        },
+        lg: {
+          css: {
+            'ol > li > *:last-child': {
+              'margin-bottom': 0,
+            },
+            'ul > li > *:last-child': {
+              'margin-bottom': 0,
+            },
+            'ol > li > *:first-child': {
+              'margin-top': 0,
+            },
+            'ul > li > *:first-child': {
+              'margin-top': 0,
+            },
+            'ul > li': {
+              'margin-top': 0,
+              'margin-bottom': 0,
+            },
+            'ol > li': {
+              'margin-top': 0,
+              'margin-bottom': 0,
+            },
+            'ul': {
+              'margin-top': 0,
+              'margin-bottom': 0,
+            },
+            'p:empty': { 
+              display: 'none',
+            },
+          }
+        }
       },
     },
     screens: {
