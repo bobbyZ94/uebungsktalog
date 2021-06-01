@@ -76,7 +76,8 @@ export default function Index({ uebungen }) {
   const [checkedAllMuskelgruppen, setCheckedAllMuskelgruppen] = useState(false);
   const [muskelgruppeChecked, setMuskelgruppeChecked] = useState({
     Unterschenkel: true,
-    Oberschenkel: true,
+    Vorderer_Oberschenkel: true,
+    Hinterer_Oberschenkel: true,
     Gesäß: true,
     Bauch: true,
     Unterer_Rücken: true,
