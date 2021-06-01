@@ -127,7 +127,7 @@ export default function Uebung({ uebung }) {
             </div>
 
             <div className="list-decimal p-3 rounded-2xl bg-red-600">
-              <article className="prose lg:prose-lg">
+              <article className="prose prose-sm sm:prose lg:prose-lg">
                 {documentToReactComponents(
                   uebung.fields.uebungsbeschreibung,
                   options

@@ -39,11 +39,23 @@ export default function TableAndSearchbox({ uebungen }) {
     setSortUebungsnameAlphabetically,
   ] = useState(true);
   const [sortSchwierigkeitsgrad, setSortSchwierigkeitsgrad] = useState(true);
+  const [
+    sortUebungstypAlphabetically,
+    setSortUebungstypAlphabetically,
+  ] = useState(true);
   function sortList(a, b) {
     if (sortBy === 'uebungsnameAlphabetically') {
       const textA = a.fields.uebungsname.toUpperCase();
       const textB = b.fields.uebungsname.toUpperCase();
       if (sortUebungsnameAlphabetically) {
+        return textA.localeCompare(textB);
+      }
+      return textB.localeCompare(textA);
+    }
+    if (sortBy === 'uebungstypAlphabetically') {
+      const textA = a.fields.uebungstyp.toUpperCase();
+      const textB = b.fields.uebungstyp.toUpperCase();
+      if (sortUebungstypAlphabetically) {
         return textA.localeCompare(textB);
       }
       return textB.localeCompare(textA);
@@ -64,6 +76,10 @@ export default function TableAndSearchbox({ uebungen }) {
   function handleSchwierigkeitsgrad() {
     setSortBy('schwierigkeitsgrad');
     setSortSchwierigkeitsgrad(!sortSchwierigkeitsgrad);
+  }
+  function handleUebungstyp() {
+    setSortBy('uebungstypAlphabetically');
+    setSortUebungstypAlphabetically(!sortUebungstypAlphabetically);
   }
   return (
     <table className="w-full text-center text-white ">
@@ -92,8 +108,16 @@ export default function TableAndSearchbox({ uebungen }) {
             </div>
           </th>
 
-          <th className="py-2 px-2 border-white ss:border-r-2 hidden ss:table-cell border-b-2">
-            Übungstyp
+          <th
+            onClick={handleUebungstyp}
+            className="cursor-pointer py-2 px-2 border-white ss:border-r-2 hidden ss:table-cell border-b-2"
+          >
+            <div className="flex justify-center">
+              <div>Übungstyp</div>
+              <div className="ml-1 self-center">
+                {sortUebungstypAlphabetically ? arrowDown : arrowUp}
+              </div>
+            </div>
           </th>
 
           <th className="py-2 px-2 border-white mm:border-r-2 hidden mm:table-cell border-b-2">
