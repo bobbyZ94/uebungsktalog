@@ -18,7 +18,7 @@ export const muskelgruppen = [
   'Oberer_Rücken',
   'Brust',
   'Schultern',
-  'Biceps',
-  'Triceps',
+  'Bizeps',
+  'Trizeps',
   'Unterarme',
 ];

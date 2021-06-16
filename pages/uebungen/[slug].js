@@ -3,6 +3,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { BLOCKS } from '@contentful/rich-text-types';
 import Image from 'next/image';
 import ReactPlayer from 'react-player';
+import { useMediaQuery } from 'react-responsive';
 import Layout from '../../components/Layout';
 
 const client = require('contentful').createClient({
@@ -36,6 +37,7 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Uebung({ uebung }) {
+  const isBigScreen = useMediaQuery({ query: '(min-device-width: 1280px)' });
   if (!uebung)
     return (
       <Layout>
@@ -90,7 +92,7 @@ export default function Uebung({ uebung }) {
   return (
     <Layout title={`${uebungsName} - Unfit Übungskatalog`}>
       <div className="flex items-center justify-center">
-        <div className="gap-5 flex flex-col justify-center place-items-center ss:w-10/12 mm:w-8/12 xl:w-6/12 text-white">
+        <div className="gap-5 flex flex-col justify-center place-items-center ss:w-10/12 xl:w-8/12 text-white">
           <div className="bg-red-600  rounded-2xl p-3 flex-col text-center">
             <div>Typ: {uebungstyp}</div>
             <h1 className="mt-2">
@@ -98,6 +100,94 @@ export default function Uebung({ uebung }) {
             </h1>
           </div>
 
+          {/* BILDER */}
+          {!isBigScreen && bildAnfang && (
+            <div className="flex flex-col">
+              <div className="flex justify-start transform translate-x-5 translate-y-1">
+                <h3 className="rounded-t-2xl pt-3 px-3 text-center bg-red-600">
+                  Übungsanfang
+                </h3>
+              </div>
+              <div className="bg-red-600 p-3 rounded-2xl max-w-lg flex">
+                <Image
+                  src={`https:${bildAnfang}`}
+                  width={bildAnfangWidth}
+                  height={bildAnfangHeight}
+                  className="rounded-2xl"
+                />
+              </div>
+            </div>
+          )}
+          {!isBigScreen && bildEnde && (
+            <div className="flex flex-col">
+              <div className="flex justify-end transform -translate-x-5 translate-y-1">
+                <h3 className="rounded-t-2xl pt-3 px-3 text-center bg-red-600">
+                  Übungsende
+                </h3>
+              </div>
+              <div className="bg-red-600 p-3 rounded-2xl max-w-lg flex">
+                <Image
+                  src={`https:${bildEnde}`}
+                  width={bildEndeWidth}
+                  height={bildEndeHeight}
+                  className="rounded-2xl"
+                />
+              </div>
+            </div>
+          )}
+          {isBigScreen && bildAnfang && bildEnde && (
+            <div className="flex gap-5">
+              <div className="flex flex-col">
+                <div className="flex justify-start transform translate-x-5 translate-y-1">
+                  <h3 className="rounded-t-2xl pt-3 px-3 text-center bg-red-600">
+                    Übungsanfang
+                  </h3>
+                </div>
+                <div className="bg-red-600 p-3 rounded-2xl max-w-lg flex">
+                  <Image
+                    src={`https:${bildAnfang}`}
+                    width={bildAnfangWidth}
+                    height={bildAnfangHeight}
+                    className="rounded-2xl"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <div className="flex justify-end transform -translate-x-5 translate-y-1">
+                  <h3 className="rounded-t-2xl pt-3 px-3 text-center bg-red-600">
+                    Übungsende
+                  </h3>
+                </div>
+                <div className="bg-red-600 p-3 rounded-2xl max-w-lg flex">
+                  <Image
+                    src={`https:${bildEnde}`}
+                    width={bildEndeWidth}
+                    height={bildEndeHeight}
+                    className="rounded-2xl"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ANLEITUNG */}
+          <div className="flex flex-col max-w-3xl">
+            <div className="flex justify-start">
+              <h3 className="transform translate-x-5 translate-y-1 rounded-t-2xl pt-3 px-3 text-center bg-red-600">
+                Anleitung
+              </h3>
+            </div>
+            <div className="list-decimal p-3 rounded-2xl bg-red-600">
+              <article className="prose prose-sm sm:prose lg:prose-lg">
+                {documentToReactComponents(
+                  uebung.fields.uebungsbeschreibung,
+                  options
+                )}
+              </article>
+            </div>
+          </div>
+
+          {/* ÜBUNGSVIDEO */}
           {uebungsVideo && (
             <div className="flex flex-col">
               <div className="flex justify-end">
@@ -119,77 +209,59 @@ export default function Uebung({ uebung }) {
             </div>
           )}
 
-          <div className="flex flex-col max-w-3xl">
-            <div className="flex justify-start">
-              <h3 className="transform translate-x-5 translate-y-1 rounded-t-2xl pt-3 px-3 text-center bg-red-600">
-                Anleitung
-              </h3>
-            </div>
-
-            <div className="list-decimal p-3 rounded-2xl bg-red-600">
-              <article className="prose prose-sm sm:prose lg:prose-lg">
-                {documentToReactComponents(
-                  uebung.fields.uebungsbeschreibung,
-                  options
-                )}
-              </article>
-            </div>
-          </div>
-          {bildAnfang && (
-            <div className="flex flex-col">
-              <div className="flex justify-start transform translate-x-5 translate-y-1">
-                <h3 className="rounded-t-2xl pt-3 px-3 text-center bg-red-600">
-                  Übungsanfang
-                </h3>
-              </div>
-              <div className="bg-red-600 p-3 rounded-2xl max-w-lg flex">
-                <Image
-                  src={`https:${bildAnfang}`}
-                  width={bildAnfangWidth}
-                  height={bildAnfangHeight}
-                  className="rounded-2xl"
-                />
-              </div>
-            </div>
-          )}
-          {bildEnde && (
-            <div className="flex flex-col">
-              <div className="flex justify-end transform -translate-x-5 translate-y-1">
-                <h3 className="rounded-t-2xl pt-3 px-3 text-center bg-red-600">
-                  Übungsende
-                </h3>
-              </div>
-              <div className="bg-red-600 p-3 rounded-2xl max-w-lg flex">
-                <Image
-                  src={`https:${bildEnde}`}
-                  width={bildEndeWidth}
-                  height={bildEndeHeight}
-                  className="rounded-2xl"
-                />
-              </div>
-            </div>
-          )}
-
+          {/* INFOBOX */}
           <div className="p-3 bg-red-600 overflow-hidden rounded-2xl text-white max-w-md">
             <table>
               <tbody>
                 <tr>
-                  <td className="pr-5 font-semibold border-b-2 border-r-2 border-white p-1">
-                    Muskelgruppe
+                  <td className="text-center font-semibold border-b-2 border-r-2 border-white p-1">
+                    ✔
+                  </td>
+                  <td className="text-center px-2 border-b-2 border-white p-1">
+                    Übungsbeschreibung
+                  </td>
+                </tr>
+                <tr>
+                  <td className="text-center font-semibold border-b-2 border-r-2 border-white p-1">
+                    !
                   </td>
                   <td className="text-center border-b-2 border-white p-1">
+                    Übungshinweise
+                  </td>
+                </tr>
+                <tr>
+                  <td className="text-center font-semibold border-b-2 border-r-2 border-white p-1">
+                    X
+                  </td>
+                  <td className="text-center border-b-2 border-white p-1">
+                    Fehlerbild
+                  </td>
+                </tr>
+                <tr>
+                  <td className="text-center font-semibold border-b-2 border-r-2 border-white p-1">
+                    ~
+                  </td>
+                  <td className="text-center border-b-2 border-white p-1">
+                    Übungsvariation
+                  </td>
+                </tr>
+                <tr>
+                  <td className="text-center px-2 font-semibold border-b-2 border-r-2 border-white p-1">
+                    Muskelgruppe
+                  </td>
+                  <td className="text-center px-2 border-b-2 border-white p-1">
                     {muskelgruppe.join(', ')}
                   </td>
                 </tr>
                 <tr>
-                  <td className="font-semibold border-b-2 border-r-2 border-white p-1">
+                  <td className="text-center font-semibold border-b-2 border-r-2 border-white p-1">
                     Schwierigkeit
                   </td>
                   <td className="text-center border-b-2 border-white p-1">
                     {star.repeat(schwierigkeitsgrad)}
                   </td>
                 </tr>
-                <tr>
+                {/* <tr>
                   <td className="font-semibold border-r-2 border-white p-1">
                     Hinzugefügt
                   </td>
@@ -200,7 +272,7 @@ export default function Uebung({ uebung }) {
                       year: 'numeric',
                     })}
                   </td>
-                </tr>
+                </tr> */}
               </tbody>
             </table>
           </div>

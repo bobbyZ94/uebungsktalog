@@ -84,8 +84,8 @@ export default function Index({ uebungen }) {
     Oberer_Rücken: true,
     Brust: true,
     Schultern: true,
-    Triceps: true,
-    Biceps: true,
+    Trizeps: true,
+    Bizeps: true,
     Unterarme: true,
   });
 

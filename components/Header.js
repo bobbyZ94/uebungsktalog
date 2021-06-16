@@ -33,12 +33,14 @@ export default function Header() {
      "
     >
       {isSmallScreen && (
-        <div className="transform translate-y-1">
-          <Image
-            src="/logo_white_new.png"
-            width={`${isBigScreen ? '120' : '75'}`}
-            height={`${isBigScreen ? '40' : '25'}`}
-          />
+        <div className="place-self-start">
+          <Link href="https://www.unifit.uni-kl.de/">
+            <Image
+              src="/logo_white_new.png"
+              width={`${isBigScreen ? '120' : '75'}`}
+              height={`${isBigScreen ? '40' : '25'}`}
+            />
+          </Link>
         </div>
       )}
       <div className="cursor-pointer">
