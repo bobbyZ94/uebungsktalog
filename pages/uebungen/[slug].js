@@ -49,7 +49,7 @@ export default function Uebung({ uebung }) {
 
   const uebungsName = uebung.fields.uebungsname;
 
-  const uebungsDatum = new Date(uebung.fields.datum);
+  // const uebungsDatum = new Date(uebung.fields.datum);
 
   const uebungsVideo =
     uebung.fields.videos && uebung.fields.videos[0].fields.file.url;
