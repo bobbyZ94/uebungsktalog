@@ -1,4 +1,4 @@
-import Link from 'next/link';
+// import Link from 'next/link';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -16,7 +16,7 @@ export default function Footer() {
           Unifit
         </a>
       </div>
-      <div className="mx-2 flex font-semibold">
+      {/* <div className="mx-2 flex font-semibold">
         <Link href="https://www.uni-kl.de/impressum/">
           <a className="mr-2 text-center no-underline hover:underline focus:underline">
             Impressum
@@ -28,7 +28,7 @@ export default function Footer() {
             Datenschutz
           </a>
         </Link>
-      </div>
+      </div> */}
       <div className="mt-2"> © {year}</div>
     </div>
   );
