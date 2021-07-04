@@ -9,13 +9,13 @@ export const uebungstypen = [
 ];
 
 export const muskelgruppen = [
-  'Unterschenkel',
   'Vorderer_Oberschenkel',
   'Hinterer_Oberschenkel',
+  'Unterschenkel',
   'Gesäß',
-  'Bauch',
   'Unterer_Rücken',
   'Oberer_Rücken',
+  'Bauch',
   'Brust',
   'Schultern',
   'Bizeps',

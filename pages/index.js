@@ -219,16 +219,20 @@ export default function Index({ uebungen }) {
                   {muskelgruppen.map((muskelgruppe) => (
                     <div key={muskelgruppe}>
                       <label>
-                        <input
-                          className="form-checkbox text-white h-4 w-4 align-middle"
-                          name={muskelgruppe}
-                          type="checkbox"
-                          checked={muskelgruppeChecked[muskelgruppe]}
-                          onChange={() => toggleCheckMuskelgruppe(muskelgruppe)}
-                        />
-                        <span className="ml-1 align-middle">
-                          {muskelgruppe.replace('_', ' ')}
-                        </span>
+                        <div className="flex">
+                          <input
+                            className="form-checkbox text-white h-4 w-4 align-middle"
+                            name={muskelgruppe}
+                            type="checkbox"
+                            checked={muskelgruppeChecked[muskelgruppe]}
+                            onChange={() =>
+                              toggleCheckMuskelgruppe(muskelgruppe)
+                            }
+                          />
+                          <span className="ml-1 align-middle">
+                            {muskelgruppe.replace('_', ' ')}
+                          </span>
+                        </div>
                       </label>
                     </div>
                   ))}
