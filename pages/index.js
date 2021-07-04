@@ -219,7 +219,7 @@ export default function Index({ uebungen }) {
                   {muskelgruppen.map((muskelgruppe) => (
                     <div key={muskelgruppe}>
                       <label>
-                        <div className="flex">
+                        <div className="flex items-center">
                           <input
                             className="form-checkbox text-white h-4 w-4 align-middle"
                             name={muskelgruppe}
