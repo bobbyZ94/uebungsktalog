@@ -72,6 +72,11 @@ export default function Uebung({ uebung }) {
     uebung.fields.bildEnde &&
     uebung.fields.bildEnde.fields.file.details.image.height;
 
+  const { uebungsbeschreibung } = uebung.fields;
+  const { uebungshinweise } = uebung.fields;
+  const { uebungsfehler } = uebung.fields;
+  const { uebungsvariationen } = uebung.fields;
+
   const { muskelgruppe } = uebung.fields;
   const { uebungstyp } = uebung.fields;
   const { schwierigkeitsgrad } = uebung.fields;
@@ -170,22 +175,81 @@ export default function Uebung({ uebung }) {
             </div>
           )}
 
-          {/* ANLEITUNG */}
-          <div className="flex flex-col max-w-3xl">
-            <div className="flex justify-start">
-              <h3 className="transform translate-x-5 translate-y-1 rounded-t-2xl pt-3 px-3 text-center bg-red-600">
-                Anleitung
-              </h3>
+          {/* BESCHREIBUNG */}
+          {uebungsbeschreibung && (
+            <div className="flex flex-col max-w-3xl">
+              <div className="flex justify-start">
+                <h3 className="transform translate-x-5 translate-y-1 rounded-t-2xl pt-3 px-3 text-center bg-red-600">
+                  Beschreibung ✔
+                </h3>
+              </div>
+              <div className="list-decimal p-3 rounded-2xl bg-red-600">
+                <article className="prose prose-sm sm:prose lg:prose-lg">
+                  {documentToReactComponents(
+                    uebung.fields.uebungsbeschreibung,
+                    options
+                  )}
+                </article>
+              </div>
             </div>
-            <div className="list-decimal p-3 rounded-2xl bg-red-600">
-              <article className="prose prose-sm sm:prose lg:prose-lg">
-                {documentToReactComponents(
-                  uebung.fields.uebungsbeschreibung,
-                  options
-                )}
-              </article>
+          )}
+
+          {/* HINWEISE */}
+          {uebungshinweise && (
+            <div className="flex flex-col max-w-3xl">
+              <div className="flex justify-end">
+                <h3 className="transform -translate-x-5 translate-y-1 rounded-t-2xl pt-3 px-3 text-center bg-red-600">
+                  Hinweise !
+                </h3>
+              </div>
+              <div className="list-decimal p-3 rounded-2xl bg-red-600">
+                <article className="prose prose-sm sm:prose lg:prose-lg">
+                  {documentToReactComponents(
+                    uebung.fields.uebungshinweise,
+                    options
+                  )}
+                </article>
+              </div>
             </div>
-          </div>
+          )}
+
+          {/* FEHLER */}
+          {uebungsfehler && (
+            <div className="flex flex-col max-w-3xl">
+              <div className="flex justify-start">
+                <h3 className="transform translate-x-5 translate-y-1 rounded-t-2xl pt-3 px-3 text-center bg-red-600">
+                  Häufige Fehler X
+                </h3>
+              </div>
+              <div className="list-decimal p-3 rounded-2xl bg-red-600">
+                <article className="prose prose-sm sm:prose lg:prose-lg">
+                  {documentToReactComponents(
+                    uebung.fields.uebungsfehler,
+                    options
+                  )}
+                </article>
+              </div>
+            </div>
+          )}
+
+          {/* VARIATIONEN */}
+          {uebungsvariationen && (
+            <div className="flex flex-col max-w-3xl">
+              <div className="flex justify-end">
+                <h3 className="transform -translate-x-5 translate-y-1 rounded-t-2xl pt-3 px-3 text-center bg-red-600">
+                  Variationen ~
+                </h3>
+              </div>
+              <div className="list-decimal p-3 rounded-2xl bg-red-600">
+                <article className="prose prose-sm sm:prose lg:prose-lg">
+                  {documentToReactComponents(
+                    uebung.fields.uebungsvariationen,
+                    options
+                  )}
+                </article>
+              </div>
+            </div>
+          )}
 
           {/* ÜBUNGSVIDEO */}
           {uebungsVideo && (
@@ -213,38 +277,6 @@ export default function Uebung({ uebung }) {
           <div className="p-3 bg-red-600 overflow-hidden rounded-2xl text-white max-w-md">
             <table>
               <tbody>
-                <tr>
-                  <td className="text-center font-semibold border-b-2 border-r-2 border-white p-1">
-                    ✔
-                  </td>
-                  <td className="text-center px-2 border-b-2 border-white p-1">
-                    Übungsbeschreibung
-                  </td>
-                </tr>
-                <tr>
-                  <td className="text-center font-semibold border-b-2 border-r-2 border-white p-1">
-                    !
-                  </td>
-                  <td className="text-center border-b-2 border-white p-1">
-                    Übungshinweise
-                  </td>
-                </tr>
-                <tr>
-                  <td className="text-center font-semibold border-b-2 border-r-2 border-white p-1">
-                    X
-                  </td>
-                  <td className="text-center border-b-2 border-white p-1">
-                    Fehlerbild
-                  </td>
-                </tr>
-                <tr>
-                  <td className="text-center font-semibold border-b-2 border-r-2 border-white p-1">
-                    ~
-                  </td>
-                  <td className="text-center border-b-2 border-white p-1">
-                    Übungsvariation
-                  </td>
-                </tr>
                 <tr>
                   <td className="text-center px-2 font-semibold border-b-2 border-r-2 border-white p-1">
                     Muskelgruppe
