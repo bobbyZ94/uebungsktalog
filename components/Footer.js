@@ -8,13 +8,14 @@ export default function Footer() {
     shadow-2xl mb-3 mx-5 rounded-2xl"
     >
       <div className="mb-2 text-center">
-        Übungskatalog des{' '}
+        Übungskatalog des HIER NAME
+        {/* des
         <a
           className="font-bold no-underline hover:underline focus:underline"
           href="https://www.unifit.uni-kl.de/"
         >
           Unifit
-        </a>
+        </a> */}
       </div>
       {/* <div className="mx-2 flex font-semibold">
         <Link href="https://www.uni-kl.de/impressum/">

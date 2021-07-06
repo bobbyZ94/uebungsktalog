@@ -32,7 +32,8 @@ export default function Header() {
      shadow-2xl mt-3 mx-5 rounded-2xl flex justify-between items-center
      "
     >
-      {isSmallScreen && (
+      HIER LOGO
+      {/* {isSmallScreen && (
         <div className="place-self-start">
           <Link href="https://www.unifit.uni-kl.de/">
             <Image
@@ -42,7 +43,7 @@ export default function Header() {
             />
           </Link>
         </div>
-      )}
+      )} */}
       <div className="cursor-pointer">
         <Link href="/">
           <h1 className="text-center sm:mr-5 transform hover:scale-110">
@@ -50,7 +51,6 @@ export default function Header() {
           </h1>
         </Link>
       </div>
-
       <div className="cursor-pointer">
         <div
           onClick={() => router.back()}
